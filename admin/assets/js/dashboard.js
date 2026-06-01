@@ -368,41 +368,38 @@ function deleteCustomer(customerId) {
   openModal("deleteCustomerModal");
 }
 
-function updateStudent(studentId) {
-  // Get student data from table row
-  const row = document.querySelector(`tr[data-student-id="${studentId}"]`);
+function updateProduct(productId) {
+  // Get product data from table row
+  const row = document.querySelector(`tr[data-product-id="${productId}"]`);
+  console.log("🚀 ~ updateProduct ~ row:", row);
   if (!row) return;
 
   const cells = row.querySelectorAll("td");
-  console.log("🚀 ~ updateStudent ~ cells:", cells);
   const id = cells[0].textContent; // Mã SV
   const name = cells[1].textContent; // Tên SV
   const email = cells[2].textContent; // Email
   const phone = cells[3].textContent; // Sô diên thoai
   const gender = cells[4].textContent; // Giói tính
-  console.log("🚀 ~ updateStudent ~ gender:", gender);
   const address = cells[5].textContent; // Quê quán
-  const status = cells[6].querySelector("select").value; // Trang thái
+  // const status = cells[6].querySelector("select").value; // Trang thái
 
   // Populate update modal with table data
-  document.getElementById("updateStudentId").value = studentId;
-  document.getElementById("updateStudentName").value = name;
-  document.getElementById("updateStudentEmail").value = email;
-  document.getElementById("updateStudentIdNum").value = id;
-  document.getElementById("updateStudentPhone").value = phone;
+  document.getElementById("updateProductId").value = productId;
+  document.getElementById("updateProductName").value = name;
+  document.getElementById("updateProductPhone").value = phone;
   // Set gender select value manually
-  const genderSelect = document.getElementById("updateStudentGender");
+  const genderSelect = document.getElementById("updateProductGender");
   for (let i = 0; i < genderSelect.options.length; i++) {
     genderSelect.options[i].selected = genderSelect.options[i].value === gender;
   }
 
-  document.getElementById("updateStudentAddress").value = address;
+  document.getElementById("updateProductAddress").value = address;
 
   // Set status select value manually
-  const statusSelect = document.getElementById("updateStudentStatus");
-  for (let i = 0; i < statusSelect.options.length; i++) {
-    statusSelect.options[i].selected = statusSelect.options[i].value === status;
-  }
+  const statusSelect = document.getElementById("updateProductStatus");
+  // for (let i = 0; i < statusSelect.options.length; i++) {
+  //   statusSelect.options[i].selected = statusSelect.options[i].value === status;
+  // }
 
   // Get image src from img element in cell 8
   const imageCell = cells[7];
@@ -415,22 +412,22 @@ function updateStudent(studentId) {
   document.getElementById("currentStudentImagePath").textContent =
     imageSrc || "No image";
 
-  openModal("updateStudentModal");
+  openModal("updateProductModal");
 }
 
-function deleteStudent(studentId) {
-  const row = document.querySelector(`tr[data-student-id="${studentId}"]`);
+function deleteProduct(productId) {
+  const row = document.querySelector(`tr[data-product-id="${productId}"]`);
   if (!row) return;
 
-  const studentInfo = row.querySelector("td:nth-child(2)").textContent;
-  document.getElementById("deleteStudentId").value = studentId;
-  document.getElementById("deleteStudentInfo").textContent = studentInfo;
+  const productInfo = row.querySelector("td:nth-child(2)").textContent;
+  document.getElementById("deleteProductId").value = productId;
+  document.getElementById("deleteProductInfo").textContent = productInfo;
 
-  openModal("deleteStudentModal");
+  openModal("deleteProductModal");
 }
 
-function viewCustomer(customerId) {
-  const row = document.querySelector(`tr[data-customer-id="${customerId}"]`);
+function viewProduct(productId) {
+  const row = document.querySelector(`tr[data-product-id="${productId}"]`);
   if (!row) return;
 
   const cells = row.querySelectorAll("td");
@@ -443,17 +440,17 @@ function viewCustomer(customerId) {
   const imageSrc = cells[6].querySelector("img").src;
 
   // Populate view modal with table data
-  document.getElementById("viewCustomerId").textContent = "ID: " + id;
-  document.getElementById("viewCustomerName").textContent = name;
-  document.getElementById("viewCustomerPhone").textContent = phone;
-  document.getElementById("viewCustomerDateOfBirth").textContent =
+  document.getElementById("viewProductId").textContent = "ID: " + id;
+  document.getElementById("viewProductName").textContent = name;
+  document.getElementById("viewProductPhone").textContent = phone;
+  document.getElementById("viewProductDateOfBirth").textContent =
     dateOfBirth || "N/A";
-  document.getElementById("viewCustomerGender").textContent = gender || "N/A";
-  document.getElementById("viewCustomerAddress").textContent = address || "N/A";
-  document.getElementById("viewCustomerImage").src = imageSrc;
-  document.getElementById("viewCustomerImage").alt = name;
+  document.getElementById("viewProductGender").textContent = gender || "N/A";
+  document.getElementById("viewProductAddress").textContent = address || "N/A";
+  document.getElementById("viewProductImage").src = imageSrc;
+  document.getElementById("viewProductImage").alt = name;
 
-  openModal("viewCustomerModal");
+  openModal("viewProductModal");
 }
 
 // Function to save tab state to session
