@@ -1,0 +1,78 @@
+@import "tailwindcss";
+:root {
+  --primary: #1a1a1a;
+  --accent: #d4956e;
+  --light-bg: #faf8f6;
+  --border-light: #e8e6e3;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes checkmark {
+  0% {
+    transform: scale(0) rotate(-45deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.checkmark-circle {
+  animation: checkmark 0.6s ease-out 0.3s both;
+}
+
+.slide-down {
+  animation: slideDown 0.6s ease-out;
+}
+
+.toast-slide-in {
+  animation: slideIn 0.3s ease;
+}
+
+.toast-fade-out {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+a:hover {
+  opacity: 0.8;
+  color: red;
+}

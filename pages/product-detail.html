@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Sản Phẩm - ShopHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-100 bg-white shadow-sm" data-navbar></nav>
+
+    <!-- Breadcrumb -->
+    <div class="max-w-6xl mx-auto px-4 py-4">
+        <p class="text-gray-500">
+            <a href="../index.html" class="no-underline" style="color: var(--accent);">Trang chủ</a>
+            <span class="text-gray-500"> / </span>
+            <a href="products.html" class="no-underline" style="color: var(--accent);">Sản phẩm</a>
+            <span class="text-gray-500"> / </span>
+            <span id="breadcrumbName" style="color: var(--primary);"></span>
+        </p>
+    </div>
+
+    <!-- Product Detail -->
+    <section class="py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Image -->
+                <div>
+                    <div class="bg-white rounded-lg overflow-hidden border" style="border-color: var(--border-light);">
+                        <div class="w-full flex items-center justify-center" id="productImage" style="background-color: var(--light-bg); font-size: 200px; height: 400px;"></div>
+                    </div>
+                </div>
+
+                <!-- Details -->
+                <div>
+                    <h1 id="productName" class="text-4xl font-bold mb-4" style="color: var(--primary);"></h1>
+                    <p id="productDescription" class="text-lg mb-8 text-gray-600"></p>
+
+                    <!-- Price -->
+                    <div class="mb-8 pb-8" style="border-bottom: 1px solid var(--border-light);">
+                        <span class="text-3xl font-bold" id="productPrice" style="color: var(--accent);"></span>
+                    </div>
+
+                    <!-- Quantity -->
+                    <div class="mb-8">
+                        <label class="block text-sm font-bold mb-4" style="color: var(--primary);">Số Lượng:</label>
+                        <div class="flex items-center gap-4">
+                            <button onclick="decreaseQuantity()" class="w-10 h-10 flex items-center justify-center rounded border transition-all duration-300" style="border-color: var(--border-light); color: var(--primary);">−</button>
+                            <input type="number" id="quantity" value="1" min="1" class="w-20 px-4 py-2 border rounded text-center" style="border-color: var(--border-light);">
+                            <button onclick="increaseQuantity()" class="w-10 h-10 flex items-center justify-center rounded border transition-all duration-300" style="border-color: var(--border-light); color: var(--primary);">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="flex gap-4">
+                        <button onclick="addToCartDetail()" class="flex-1 py-4 text-lg text-white rounded transition-all duration-300" style="background-color: var(--primary);">
+                            Thêm Vào Giỏ Hàng
+                        </button>
+                        <a href="cart.html" class="flex-1 py-4 text-lg text-center rounded border no-underline transition-all duration-300" style="border-color: var(--border-light); color: var(--primary);">
+                            Xem Giỏ Hàng
+                        </a>
+                    </div>
+
+                    <!-- Info -->
+                    <div class="mt-12 pt-8" style="border-top: 1px solid var(--border-light);">
+                        <h3 class="text-lg font-bold mb-6" style="color: var(--primary);">Thông Tin Sản Phẩm</h3>
+                        <ul class="space-y-4 text-sm text-gray-600">
+                            <li><strong>Kho hàng:</strong> <span class="text-green-600 ml-2">Còn hàng</span></li>
+                            <li><strong>Giao hàng:</strong> Miễn phí cho đơn từ 200K</li>
+                            <li><strong>Trả hàng:</strong> 30 ngày hoàn tiền nếu không hài lòng</li>
+                            <li><strong>Bảo hành:</strong> Bảo hành chất lượng sản phẩm</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="py-12" style="background-color: white; margin-top: 40px;">
+        <div class="container-custom">
+            <h2 class="text-3xl font-bold mb-8" style="color: var(--primary);">Sản Phẩm Liên Quan</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6" id="relatedProducts"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12" style="background-color: var(--primary);">
+        <div class="container-custom">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="font-bold mb-4">ShopHub</h4>
+                    <p class="text-sm opacity-80">Mua sắm trực tuyến dễ dàng, an toàn và tiết kiệm</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Về Chúng Tôi</h4>
+                    <ul class="text-sm space-y-2 opacity-80">
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Hỗ Trợ</h4>
+                    <ul class="text-sm space-y-2 opacity-80">
+                        <li><a href="#">Trả về</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Chính sách</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Kết Nối</h4>
+                    <ul class="text-sm space-y-2 opacity-80">
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white border-opacity-20 pt-8 text-center text-sm opacity-80">
+                <p>&copy; 2024 ShopHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/store.js"></script>
+    <script src="../js/utils.js"></script>
+    <script>
+        let currentProduct = null;
+
+        function getProductIdFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return parseInt(params.get('id'));
+        }
+
+        function renderProductDetail() {
+            const productId = getProductIdFromURL();
+            currentProduct = getProductById(productId);
+
+            if (!currentProduct) {
+                document.body.innerHTML = '<div class="container-custom py-12"><p>Sản phẩm không tồn tại</p></div>';
+                return;
+            }
+
+            document.getElementById('productName').textContent = currentProduct.name;
+            document.getElementById('productDescription').textContent = currentProduct.description;
+            document.getElementById('productImage').textContent = currentProduct.emoji;
+            document.getElementById('productPrice').textContent = formatPrice(currentProduct.price);
+            document.getElementById('breadcrumbName').textContent = currentProduct.name;
+
+            renderRelatedProducts();
+        }
+
+        function renderRelatedProducts() {
+            const related = store.products
+                .filter(p => p.id !== currentProduct.id)
+                .slice(0, 4);
+
+            const container = document.getElementById('relatedProducts');
+            container.innerHTML = related.map(product => `
+                <div class="product-card">
+                    <div class="product-image">${product.emoji}</div>
+                    <div class="p-4">
+                        <h3 class="font-bold mb-2" style="color: var(--primary);">${product.name}</h3>
+                        <p class="text-sm mb-4" style="color: #999;">${product.description}</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold" style="color: var(--accent);">${formatPrice(product.price)}</span>
+                        </div>
+                        <div class="flex gap-2 mt-4">
+                            <a href="product-detail.html?id=${product.id}" class="btn-secondary flex-1" style="text-align: center; text-decoration: none;">
+                                Xem
+                            </a>
+                            <button onclick="addRelatedToCart(${product.id})" class="btn-primary flex-1">
+                                Thêm
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function increaseQuantity() {
+            const input = document.getElementById('quantity');
+            input.value = parseInt(input.value) + 1;
+        }
+
+        function decreaseQuantity() {
+            const input = document.getElementById('quantity');
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+
+        function addToCartDetail() {
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const productId = getProductIdFromURL();
+            
+            for (let i = 0; i < quantity; i++) {
+                store.addToCart(productId);
+            }
+            
+            showToast('Đã thêm sản phẩm vào giỏ hàng!');
+            updateNavbar();
+        }
+
+        function addRelatedToCart(productId) {
+            store.addToCart(productId);
+            showToast('Đã thêm sản phẩm vào giỏ hàng!');
+            updateNavbar();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createNavbar();
+            renderProductDetail();
+        });
+    </script>
+</body>
+</html>
