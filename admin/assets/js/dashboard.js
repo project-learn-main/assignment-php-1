@@ -453,6 +453,96 @@ function viewProduct(productId) {
   openModal("viewProductModal");
 }
 
+function updateUser(userID) {
+  console.log("🚀 ~ updateUser ~ userID:", userID);
+  // Get product data from table row
+  const row = document.querySelector(`tr[data-user-id="${userID}"]`);
+  if (!row) return;
+
+  const cells = row.querySelectorAll("td");
+  const id = cells[0].textContent; // Mã SV
+  const name = cells[1].textContent; // Tên SV
+  const email = cells[2].textContent; // Email
+  const phone = cells[3].textContent; // Sô diên thoai
+  const gender = cells[4].textContent; // Giói tính
+  const address = cells[5].textContent; // Quê quán
+  // const status = cells[6].querySelector("select").value; // Trang thái
+
+  // Populate update modal with table data
+  document.getElementById("updateUserId").value = userID;
+  console.log(
+    `🚀 ~ updateUser ~ document.getElementById("updateUserId").value:`,
+    document.getElementById("updateUserId").value,
+  );
+  document.getElementById("updateUserName").value = name;
+  document.getElementById("updateUserPhone").value = phone;
+  // Set gender select value manually
+  const genderSelect = document.getElementById("updateUserGender");
+  for (let i = 0; i < genderSelect.options.length; i++) {
+    genderSelect.options[i].selected = genderSelect.options[i].value === gender;
+  }
+
+  document.getElementById("updateUserAddress").value = address;
+
+  // Set status select value manually
+  const statusSelect = document.getElementById("updateUserStatus");
+  // for (let i = 0; i < statusSelect.options.length; i++) {
+  //   statusSelect.options[i].selected = statusSelect.options[i].value === status;
+  // }
+
+  // Get image src from img element in cell 8
+  const imageCell = cells[7];
+  const imgElement = imageCell.querySelector("img");
+  const imageSrc = imgElement ? imgElement.src : "";
+
+  // Display current image in modal
+  document.getElementById("currentStudentImage").src =
+    imageSrc || "https://via.placeholder.com/50";
+  document.getElementById("currentStudentImagePath").textContent =
+    imageSrc || "No image";
+
+  openModal("updateUserModal");
+}
+
+function deleteUser(userID) {
+  console.log("🚀 ~ deleteUser ~ userID:", userID);
+  const row = document.querySelector(`tr[data-user-id="${userID}"]`);
+  if (!row) return;
+
+  const productInfo = row.querySelector("td:nth-child(2)").textContent;
+  document.getElementById("deleteUserId").value = userID;
+  document.getElementById("deleteUserInfo").textContent = productInfo;
+
+  openModal("deleteUserModal");
+}
+
+function viewUser(userID) {
+  const row = document.querySelector(`tr[data-user-id="${userID}"]`);
+  if (!row) return;
+
+  const cells = row.querySelectorAll("td");
+  const id = cells[0].textContent;
+  const name = cells[1].textContent;
+  const phone = cells[2].textContent;
+  const dateOfBirth = cells[3].textContent;
+  const gender = cells[4].textContent;
+  const address = cells[5].textContent;
+  const imageSrc = cells[6].querySelector("img").src;
+
+  // Populate view modal with table data
+  document.getElementById("viewUserId").textContent = "ID: " + id;
+  document.getElementById("viewUserName").textContent = name;
+  document.getElementById("viewUserPhone").textContent = phone;
+  document.getElementById("viewUserDateOfBirth").textContent =
+    dateOfBirth || "N/A";
+  document.getElementById("viewUserGender").textContent = gender || "N/A";
+  document.getElementById("viewUserAddress").textContent = address || "N/A";
+  document.getElementById("viewUserImage").src = imageSrc;
+  document.getElementById("viewUserImage").alt = name;
+
+  openModal("viewUserModal");
+}
+
 // Function to save tab state to session
 function saveTabState(tab) {
   fetch("actions/save_tab.php", {
@@ -475,8 +565,8 @@ function saveTabState(tab) {
     });
 }
 
-function viewStudent(studentId) {
-  const row = document.querySelector(`tr[data-student-id="${studentId}"]`);
+function viewCategory(categoryId) {
+  const row = document.querySelector(`tr[data-category-id="${categoryId}"]`);
   if (!row) return;
 
   const cells = row.querySelectorAll("td");
@@ -490,16 +580,69 @@ function viewStudent(studentId) {
   const imageSrc = cells[7].querySelector("img").src;
 
   // Populate view modal with table data
-  document.getElementById("viewStudentId").textContent = "ID: " + id;
-  document.getElementById("viewStudentName").textContent = name;
-  document.getElementById("viewStudentEmail").textContent = email;
-  document.getElementById("viewStudentPhone").textContent = phone;
-  document.getElementById("viewStudentGender").textContent = gender;
-  document.getElementById("viewStudentAddress").textContent = address;
-  document.getElementById("viewStudentImage").src = imageSrc;
-  document.getElementById("viewStudentImage").alt = name;
+  document.getElementById("viewCategoryId").textContent = "ID: " + id;
+  document.getElementById("viewCategoryName").textContent = name;
+  document.getElementById("viewCategoryEmail").textContent = email;
+  document.getElementById("viewCategoryPhone").textContent = phone;
+  document.getElementById("viewCategoryGender").textContent = gender;
+  document.getElementById("viewCategoryAddress").textContent = address;
+  document.getElementById("viewCategoryImage").src = imageSrc;
+  document.getElementById("viewCategoryImage").alt = name;
 
-  openModal("viewStudentModal");
+  openModal("viewCategoryModal");
+}
+
+function updateCategory(categoryId) {
+  console.log("🚀 ~ updateUser ~ userID:", categoryId);
+  // Get product data from table row
+  const row = document.querySelector(`tr[data-category-id="${categoryId}"]`);
+  if (!row) return;
+
+  const cells = row.querySelectorAll("td");
+  const id = cells[0].textContent; // Mã SV
+  const name = cells[1].textContent; // Tên SV
+  const email = cells[2].textContent; // Email
+  const phone = cells[3].textContent; // Sô diên thoai
+  const gender = cells[4].textContent; // Giói tính
+  const address = cells[5].textContent; // Quê quán
+  // const status = cells[6].querySelector("select").value; // Trang thái
+
+  // Populate update modal with table data
+  document.getElementById("updateCategoryId").value = categoryId;
+  document.getElementById("updateCategoryName").value = name;
+  document.getElementById("updateCategoryPhone").value = phone;
+  // Set gender select value manually
+  const genderSelect = document.getElementById("updateCategoryGender");
+  for (let i = 0; i < genderSelect.options.length; i++) {
+    genderSelect.options[i].selected = genderSelect.options[i].value === gender;
+  }
+
+  document.getElementById("updateCategoryAddress").value = address;
+
+  // Set status select value manually
+  const statusSelect = document.getElementById("updateCategoryStatus");
+  // for (let i = 0; i < statusSelect.options.length; i++) {
+  //   statusSelect.options[i].selected = statusSelect.options[i].value === status;
+  // }
+
+  // Get image src from img element in cell 8
+  const imageCell = cells[7];
+  const imgElement = imageCell.querySelector("img");
+  const imageSrc = imgElement ? imgElement.src : "";
+
+  openModal("updateCategoryModal");
+}
+
+function deleteCategory(categoryId) {
+  console.log("🚀 ~ deleteUser ~ userID:", categoryId);
+  const row = document.querySelector(`tr[data-category-id="${categoryId}"]`);
+  if (!row) return;
+
+  const productInfo = row.querySelector("td:nth-child(2)").textContent;
+  document.getElementById("deleteCategoryId").value = categoryId;
+  document.getElementById("deleteCategoryInfo").textContent = productInfo;
+
+  openModal("deleteCategoryModal");
 }
 
 // Function to reset pagination to page 1
