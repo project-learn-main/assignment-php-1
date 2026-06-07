@@ -4,7 +4,7 @@
                 <h1 class="text-3xl font-bold mb-2" style="color: var(--primary);">Đăng Ký</h1>
                 <p class="text-sm mb-8 text-gray-600">Tạo tài khoản ShopHub mới của bạn</p>
 
-                <form id="registerForm" onsubmit="handleRegister(event)">
+                <form id="registerForm" action="actions/register.php" method="POST">
                     <!-- Name -->
                     <div class="mb-6">
                         <label for="name" class="block text-sm font-bold mb-2" style="color: var(--primary);">
@@ -16,6 +16,7 @@
                             class="w-full px-4 py-3 border rounded transition-all duration-300 focus:outline-none" 
                             placeholder="Nguyễn Văn A"
                             style="border-color: var(--border-light);"
+                            name="name"
                             required
                         >
                     </div>
@@ -31,6 +32,7 @@
                             class="w-full px-4 py-3 border rounded transition-all duration-300 focus:outline-none" 
                             placeholder="your@email.com"
                             style="border-color: var(--border-light);"
+                            name="email"
                             required
                         >
                     </div>
@@ -46,6 +48,7 @@
                             class="w-full px-4 py-3 border rounded transition-all duration-300 focus:outline-none" 
                             placeholder="••••••••"
                             style="border-color: var(--border-light);"
+                            name="password"
                             required
                         >
                         <p class="text-xs mt-2 text-gray-500">Mật khẩu phải có ít nhất 6 ký tự</p>
@@ -62,21 +65,10 @@
                             class="w-full px-4 py-3 border rounded transition-all duration-300 focus:outline-none" 
                             placeholder="••••••••"
                             style="border-color: var(--border-light);"
+                            name="confirmPassword"
                             required
                         >
-                    </div>
-
-                    <!-- Terms -->
-                    <div class="mb-8">
-                        <label class="flex items-start gap-2">
-                            <input type="checkbox" id="terms" required style="width: 16px; height: 16px; margin-top: 4px;">
-                            <span class="text-sm text-gray-600">
-                                Tôi đồng ý với 
-                                <a href="#" class="no-underline" style="color: var(--accent);">Điều khoản Dịch vụ</a> 
-                                và 
-                                <a href="#" class="no-underline" style="color: var(--accent);">Chính sách Bảo mật</a>
-                            </span>
-                        </label>
+                        <p class="text-xs mt-2 text-red-600" id="error"></p>
                     </div>
 
                     <!-- Submit -->
@@ -93,3 +85,18 @@
             </div>
         </div>
     </section>
+    <script>
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirmPassword");
+    const error = document.getElementById("error");
+
+    confirmPassword.addEventListener("input", function () {
+    if (password.value !== confirmPassword.value) {
+        confirmPassword.setCustomValidity("Mật khẩu xác nhận không khớp");
+        error.textContent = "Mật khẩu xác nhận không khớp!";
+    } else {
+        confirmPassword.setCustomValidity("");
+        error.textContent = "";
+    }
+});
+</script>

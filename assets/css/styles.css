@@ -5,7 +5,9 @@
   --light-bg: #faf8f6;
   --border-light: #e8e6e3;
 }
-
+#toastContainer {
+  z-index: 9999;
+}
 @keyframes slideIn {
   from {
     transform: translateX(400px);

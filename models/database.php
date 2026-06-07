@@ -40,6 +40,11 @@ class Database
             echo "Ngắt kết nối thành công! <br>";
         }
     }
+
+    public function getConnection()
+{
+    return $this->connection;
+}
 }
 
 $db = new Database(
