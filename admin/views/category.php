@@ -14,7 +14,7 @@ $perPage = 5;
 
 // Sort students by ID descending (handle both numeric and string IDs)
 $sortedStudents = $_SESSION['students'];
-usort($sortedStudents, function($a, $b) {
+usort($sortedStudents, function ($a, $b) {
     // Convert IDs to numeric for comparison
     $idA = is_numeric($a['id']) ? $a['id'] : (int)preg_replace('/[^0-9]/', '', $a['id']);
     $idB = is_numeric($b['id']) ? $b['id'] : (int)preg_replace('/[^0-9]/', '', $b['id']);
@@ -31,22 +31,22 @@ $studentsPage = array_slice($sortedStudents, $offset, $perPage);
 <!-- Header -->
 <div class="h-full w-full">
     <div class="bg-gray-800 px-6 py-8">
-         <div class="flex justify-end w-full">
-           <div class="flex items-center gap-3">
-               <div class="border-primary border-2 rounded-lg flex items-center justify-center w-12 h-12">
-                   <img src="assets/images/avartar.webp" alt="Avatar" class="w-12 h-12 rounded-full">
-               </div>
-               <h1 class="text-white text-lg">Hello, <?php echo $_COOKIE['name']; ?></h1>
-           </div>
-       </div>
+        <div class="flex justify-end w-full">
+            <div class="flex items-center gap-3">
+                <div class="border-primary border-2 rounded-lg flex items-center justify-center w-12 h-12">
+                    <img src="assets/images/avartar.webp" alt="Avatar" class="w-12 h-12 rounded-full">
+                </div>
+                <!-- <h1 class="text-white text-lg">Hello, <?php echo $_COOKIE['name']; ?></h1> -->
+            </div>
+        </div>
         <div class="flex items-center gap-4">
-                <h2 class="text-white text-2xl font-semibold">Students</h2>
-                <button class="bg-primary hover:opacity-80 text-white px-4 py-2 rounded-lg transition-colors flex items-center" onclick="openModal('addStudentModal')">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                    </svg>
-                    New Student
-                </button>
+            <h2 class="text-white text-2xl font-semibold">Categories</h2>
+            <button class="bg-primary hover:opacity-80 text-white px-4 py-2 rounded-lg transition-colors flex items-center" onclick="openModal('addCategoryModal')">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                New Category
+            </button>
         </div>
 
         <!-- <div class="py-3">
@@ -145,7 +145,7 @@ $studentsPage = array_slice($sortedStudents, $offset, $perPage);
                     echo '</td>';
                     echo '</tr>';
                 }
-                
+
                 // Add empty rows to always show 5 rows
                 for ($i = $rowCount; $i < 5; $i++) {
                     echo '<tr class="border-b border-gray-800">';
@@ -164,36 +164,36 @@ $studentsPage = array_slice($sortedStudents, $offset, $perPage);
             </tbody>
         </table>
     </div>
-    
+
     <!-- Pagination -->
     <?php if ($totalPages > 1): ?>
-    <div class="px-6 py-4 bg-gray-800 border-t border-gray-700">
-        <div class="flex justify-between items-center">
-            <div class="text-sm text-gray-400">
-                Hiển thị <?php echo ($offset + 1); ?> - <?php echo min($offset + $perPage, $total); ?> của <?php echo $total; ?> sinh viên
-            </div>
-            <div class="flex gap-2">
-                <?php if ($currentPage > 1): ?>
-                    <a href="?tab=students&page=<?php echo $currentPage - 1; ?>" class="px-3 py-1 bg-gray-700 text-white rounded hover:bg-gray-600">Trước</a>
-                <?php else: ?>
-                    <span class="px-3 py-1 bg-gray-700 text-white rounded opacity-50 cursor-not-allowed">Trước</span>
-                <?php endif; ?>
-                
-                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                    <?php if ($i == $currentPage): ?>
-                        <span class="px-3 py-1 bg-blue-600 text-white rounded"><?php echo $i; ?></span>
+        <div class="px-6 py-4 bg-gray-800 border-t border-gray-700">
+            <div class="flex justify-between items-center">
+                <div class="text-sm text-gray-400">
+                    Hiển thị <?php echo ($offset + 1); ?> - <?php echo min($offset + $perPage, $total); ?> của <?php echo $total; ?> sinh viên
+                </div>
+                <div class="flex gap-2">
+                    <?php if ($currentPage > 1): ?>
+                        <a href="?tab=students&page=<?php echo $currentPage - 1; ?>" class="px-3 py-1 bg-gray-700 text-white rounded hover:bg-gray-600">Trước</a>
                     <?php else: ?>
-                        <a href="?tab=students&page=<?php echo $i; ?>" class="px-3 py-1 bg-gray-700 text-white rounded hover:bg-gray-600"><?php echo $i; ?></a>
+                        <span class="px-3 py-1 bg-gray-700 text-white rounded opacity-50 cursor-not-allowed">Trước</span>
                     <?php endif; ?>
-                <?php endfor; ?>
-                
-                <?php if ($currentPage < $totalPages): ?>
-                    <a href="?tab=students&page=<?php echo $currentPage + 1; ?>" class="px-3 py-1 bg-gray-700 text-white rounded hover:bg-gray-600">Sau</a>
-                <?php else: ?>
-                    <span class="px-3 py-1 bg-gray-700 text-white rounded opacity-50 cursor-not-allowed">Sau</span>
-                <?php endif; ?>
+
+                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                        <?php if ($i == $currentPage): ?>
+                            <span class="px-3 py-1 bg-blue-600 text-white rounded"><?php echo $i; ?></span>
+                        <?php else: ?>
+                            <a href="?tab=students&page=<?php echo $i; ?>" class="px-3 py-1 bg-gray-700 text-white rounded hover:bg-gray-600"><?php echo $i; ?></a>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+
+                    <?php if ($currentPage < $totalPages): ?>
+                        <a href="?tab=students&page=<?php echo $currentPage + 1; ?>" class="px-3 py-1 bg-gray-700 text-white rounded hover:bg-gray-600">Sau</a>
+                    <?php else: ?>
+                        <span class="px-3 py-1 bg-gray-700 text-white rounded opacity-50 cursor-not-allowed">Sau</span>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
-    </div>
     <?php endif; ?>
 </div>

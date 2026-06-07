@@ -1,4 +1,3 @@
-
 <!-- View Order Details Modal -->
 <div id="viewOrderDetailsModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
     <div class="bg-gray-800 text-white rounded-xl max-w-md w-full mx-4">
@@ -65,18 +64,25 @@
                     <input type="text" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         id="productName" name="name" required>
                 </div>
-                    <div class="mb-4">
-                        <label for="gender" class="block text-gray-300 font-medium mb-2">Category</label>
-                        <select class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            id="gender" name="gender" required>
-                            <option value="Category1">Category 1</option>
-                            <option value="Category2">Category 2</option>
-                        </select>
-                    </div>
                 <div class="mb-4">
-                    <label for="productPrice" class="block text-gray-300 font-medium mb-2">Price</label>
-                    <input type="tel" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="productPrice" name="price" required>
+                    <label for="gender" class="block text-gray-300 font-medium mb-2">Category</label>
+                    <select class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        id="gender" name="gender" required>
+                        <option value="Category1">Category 1</option>
+                        <option value="Category2">Category 2</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="mb-4">
+                        <label for="productPrice" class="block text-gray-300 font-medium mb-2">Price</label>
+                        <input type="tel" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            id="productPrice" name="price" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="productStock" class="block text-gray-300 font-medium mb-2">Stock</label>
+                        <input type="text" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            id="productStock" name="stock" required>
+                    </div>
                 </div>
                 <div class="mb-4">
                     <label for="productDescription" class="block text-gray-300 font-medium mb-2">Description</label>
@@ -162,8 +168,8 @@
                 </div>
             </div>
             <div class="flex items-center justify-end gap-2 p-4 border-t border-gray-700">
-                <button type="button" class="px-4 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors" onclick="closeModal('updateCustomerModal')">Cancel</button>
-                <button type="submit" class="px-4 py-2 bg-primary text-white rounded-lg hover:opacity-80 transition-colors">Update Customer</button>
+                <button type="button" class="px-4 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors" onclick="closeModal('updateProductModal')">Cancel</button>
+                <button type="submit" class="px-4 py-2 bg-primary text-white rounded-lg hover:opacity-80 transition-colors">Update Product</button>
             </div>
         </form>
     </div>
@@ -276,7 +282,7 @@
     </div>
 </div>
 
-<!-- Update User Modal --> 
+<!-- Update User Modal -->
 <div id="updateUserModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
     <div class="bg-gray-800 text-white rounded-xl max-w-md w-full mx-4">
         <div class="flex items-center justify-between p-4 border-b border-gray-700">
@@ -382,7 +388,7 @@
     </div>
 </div>
 
-<!-- View User Details Modal --> 
+<!-- View User Details Modal -->
 <div id="viewUserModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
     <div class="bg-gray-800 text-white rounded-xl max-w-md w-full mx-4">
         <div class="flex items-center justify-between p-4 border-b border-gray-700">
@@ -459,8 +465,8 @@
 <div id="addCategoryModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
     <div class="bg-gray-800 text-white rounded-xl max-w-md w-full mx-4">
         <div class="flex items-center justify-between p-4 border-b border-gray-700">
-            <h5 class="text-lg font-semibold">Add New Student</h5>
-            <button type="button" class="text-gray-400 hover:text-white transition-colors" onclick="closeModal('addStudentModal')">
+            <h5 class="text-lg font-semibold">Add New Category</h5>
+            <button type="button" class="text-gray-400 hover:text-white transition-colors" onclick="closeModal('addCategoryModal')">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
@@ -469,48 +475,20 @@
         <form method="POST" action="actions/add_student.php" enctype="multipart/form-data">
             <div class="p-4">
                 <div class="mb-4">
-                    <label for="studentName" class="block text-gray-300 font-medium mb-2">Full Name</label>
+                    <label for="CategoryName" class="block text-gray-300 font-medium mb-2">Category Name</label>
                     <input type="text" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="studentName" name="name" required>
+                        id="CategoryName" name="name" required>
                 </div>
-                <div class="grid grid-cols-2 gap-4 items-center">
-                    <div class="mb-4">
-                        <label for="dateOfBirth" class="block text-gray-300 font-medium mb-2">Date of Birth</label>
-                        <input type="date" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            id="dateOfBirth" name="dateOfBirth" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="gender" class="block text-gray-300 font-medium mb-2">Gender</label>
-                        <select class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            id="gender" name="gender" required>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                    </div>
-                </div>
+
                 <div class="mb-4">
-                    <label for="studentPhone" class="block text-gray-300 font-medium mb-2">Phone Number</label>
+                    <label for="CategoryDescription" class="block text-gray-300 font-medium mb-2">Description</label>
                     <input type="tel" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="studentPhone" name="phone" required>
+                        id="CategoryDescription" name="description" required>
                 </div>
-                <div class="mb-4">
-                    <label for="studentEmail" class="block text-gray-300 font-medium mb-2">Email</label>
-                    <input type="email" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="studentEmail" name="email" required>
-                </div>
-                <div class="mb-4">
-                    <label for="studentAddress" class="block text-gray-300 font-medium mb-2">Address</label>
-                    <input type="text" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="studentAddress" name="address" required>
-                </div>
-                <div class="mb-4">
-                    <label for="studentImage" class="block text-gray-300 font-medium mb-2">Profile Image</label>
-                    <input type="file" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="studentImage" name="image" required accept="image/*">
-                </div>
+
             </div>
             <div class="flex items-center justify-end gap-2 p-4 border-t border-gray-700">
-                <button type="button" class="px-4 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors" onclick="closeModal('addStudentModal')">Cancel</button>
+                <button type="button" class="px-4 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors" onclick="closeModal('addCategoryModal')">Cancel</button>
                 <button type="submit" class="px-4 py-2 bg-primary text-white rounded-lg hover:opacity-80 transition-colors">Add Student</button>
             </div>
         </form>

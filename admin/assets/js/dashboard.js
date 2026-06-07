@@ -407,10 +407,7 @@ function updateProduct(productId) {
   const imageSrc = imgElement ? imgElement.src : "";
 
   // Display current image in modal
-  document.getElementById("currentStudentImage").src =
-    imageSrc || "https://via.placeholder.com/50";
-  document.getElementById("currentStudentImagePath").textContent =
-    imageSrc || "No image";
+  //
 
   openModal("updateProductModal");
 }
