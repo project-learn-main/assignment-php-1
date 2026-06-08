@@ -1,11 +1,11 @@
 <?php
 include('database.php');
-function getAllCategory()
+function getAllUser()
 {
     global $db;
     $conn = $db->getConnection();
 
-    $result = mysqli_query($conn, "SELECT * FROM categories ORDER BY created_at DESC;");
+    $result = mysqli_query($conn, "SELECT * FROM users ORDER BY created_at DESC;");
 
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }

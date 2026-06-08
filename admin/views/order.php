@@ -29,13 +29,14 @@ $ordersPage = array_slice($_SESSION['orders'], $offset, $perPage);
 <div class="h-full w-full">
     <div class="bg-gray-800 px-6 py-8">
         <div class="flex justify-end w-full">
-           <div class="flex items-center gap-3">
-               <div class="border-primary border-2 rounded-lg flex items-center justify-center w-12 h-12">
-                   <img src="assets/images/avartar.webp" alt="Avatar" class="w-12 h-12 rounded-full">
-               </div>
-               <h1 class="text-white text-lg">Hello, <?php //echo $_COOKIE['name']; ?></h1>
-           </div>
-       </div>
+            <div class="flex items-center gap-3">
+                <div class="border-primary border-2 rounded-lg flex items-center justify-center w-12 h-12">
+                    <img src="assets/images/avartar.webp" alt="Avatar" class="w-12 h-12 rounded-full">
+                </div>
+                <h1 class="text-white text-lg">Hello, <?php //echo $_COOKIE['name']; 
+                                                        ?></h1>
+            </div>
+        </div>
         <h2 class="text-white text-2xl font-semibold">Orders</h2>
         <!-- Filters
         <div class="py-3">
@@ -90,7 +91,7 @@ $ordersPage = array_slice($_SESSION['orders'], $offset, $perPage);
                 $dataOrders = $_SESSION['orders'];
                 $rowCount = 0;
 
-               foreach ($ordersPage as $order) {
+                foreach ($ordersPage as $order) {
                     $rowCount++;
                     echo '<tr class="border-b border-gray-800 hover:bg-gray-800 transition-colors" data-order-id="' . $order['orderId'] . '">';
                     echo '<td class="py-3 px-6 font-semibold">' . $order['orderId'] . '</td>';
@@ -124,10 +125,10 @@ $ordersPage = array_slice($_SESSION['orders'], $offset, $perPage);
                     echo '</div>';
                     echo '</td>';
                     echo '</tr>';
-               }
+                }
 
-               // Add empty rows to always show 5 rows
-               for ($i = $rowCount; $i < 5; $i++) {
+                // Add empty rows to always show 5 rows
+                for ($i = $rowCount; $i < 5; $i++) {
                     echo '<tr class="border-b border-gray-800">';
                     echo '<td class="py-3 px-6 font-semibold">&nbsp;</td>';
                     echo '<td class="py-3 px-6">&nbsp;</td>';
@@ -138,12 +139,12 @@ $ordersPage = array_slice($_SESSION['orders'], $offset, $perPage);
                     echo '<td class="py-3 px-4">&nbsp;</td>';
                     echo '<td class="py-3 px-6">&nbsp;</td>';
                     echo '</tr>';
-               }
+                }
                 ?>
             </tbody>
         </table>
     </div>
-    
+
     <!-- Pagination -->
     <?php if ($totalPages > 1): ?>
         <div class="px-6 py-4 bg-gray-800 border-t border-gray-700">
@@ -157,7 +158,7 @@ $ordersPage = array_slice($_SESSION['orders'], $offset, $perPage);
                     <?php else: ?>
                         <span class="px-3 py-1 bg-gray-700 text-white rounded opacity-50 cursor-not-allowed">Trước</span>
                     <?php endif; ?>
-                    
+
                     <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                         <?php if ($i == $currentPage): ?>
                             <span class="px-3 py-1 bg-blue-600 text-white rounded"><?php echo $i; ?></span>
@@ -165,7 +166,7 @@ $ordersPage = array_slice($_SESSION['orders'], $offset, $perPage);
                             <a href="?tab=order&page=<?php echo $i; ?>" class="px-3 py-1 bg-gray-700 text-white rounded hover:bg-gray-600"><?php echo $i; ?></a>
                         <?php endif; ?>
                     <?php endfor; ?>
-                    
+
                     <?php if ($currentPage < $totalPages): ?>
                         <a href="?tab=order&page=<?php echo $currentPage + 1; ?>" class="px-3 py-1 bg-gray-700 text-white rounded hover:bg-gray-600">Sau</a>
                     <?php else: ?>
