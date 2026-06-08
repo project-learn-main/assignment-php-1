@@ -86,58 +86,32 @@ $studentsPage = array_slice($sortedStudents, $offset, $perPage);
         <table class="w-full text-white">
             <thead>
                 <tr class="border-b border-gray-700">
-                    <th class="text-left py-3 px-4 font-medium text-gray-300">Mã SV</th>
-                    <th class="text-left py-3 px-4 font-medium text-gray-300">Tên SV</th>
-                    <th class="text-left py-3 px-4 font-medium text-gray-300">Email</th>
-                    <th class="text-left py-3 px-4 font-medium text-gray-300">Sô diên thoai</th>
-                    <th class="text-left py-3 px-4 font-medium text-gray-300">Giói tính</th>
-                    <th class="text-left py-3 px-4 font-medium text-gray-300">Quê quán</th>
-                    <th class="text-left py-3 px-4 font-medium text-gray-300">Trang thái</th>
-                    <th class="text-center py-3 px-4 font-medium text-gray-300">Hinh anh</th>
-                    <th class="text-center py-3 px-4 font-medium text-gray-300">Actions</th>
+                    <th class="text-left py-3 px-4 font-medium text-gray-300">ID</th>
+                    <th class="text-left py-3 px-4 font-medium text-gray-300">Name</th>
+                    <th class="text-left py-3 px-4 font-medium text-gray-300">Description</th>
+                    <th class="text-left py-3 px-4 font-medium text-gray-300">Created At</th>
+                    <th class="text-left py-3 px-4 font-medium text-gray-300">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 $students = $_SESSION['students'];
                 $rowCount = 0;
-                foreach ($studentsPage as $student) {
+                foreach ($data as $category) {
                     $rowCount++;
-                    echo '<tr class="border-b border-gray-800 hover:bg-gray-800 transition-colors" data-category-id="' . $student['id'] . '">';
-                    echo '<td class="py-3 px-4 font-semibold">' . $student['id'] . '</td>';
-                    echo '<td class="py-3 px-4">' . $student['name'] . '</td>';
-                    echo '<td class="py-3 px-4">' . $student['email'] . '</td>';
-                    echo '<td class="py-3 px-4">' . ($student['phone'] ?? '') . '</td>';
-                    echo '<td class="py-3 px-4">' . ($student['gender'] ?? '') . '</td>';
-                    echo '<td class="py-3 px-4">' . ($student['address'] ?? '') . '</td>';
+                    echo '<tr class="border-b border-gray-800 hover:bg-gray-800 transition-colors" data-category-id="' . $category['id'] . '">';
+                    echo '<td class="py-3 px-4 font-semibold">' . $category['id'] . '</td>';
+                    echo '<td class="py-3 px-4">' . $category['name'] . '</td>';
+                    echo '<td class="py-3 px-4">' . $category['description'] . '</td>';
+                    echo '<td class="py-3 px-4">' . ($category['created_at'] ?? '') . '</td>';
                     echo '<td class="py-3 px-4">';
-                    $status = $student['status'] ?? 'Đang học';
-                    echo '<form method="POST" action="actions/update_student_status.php" style="margin: 0;">';
-                    echo '<input type="hidden" name="id" value="' . $student['id'] . '">';
-                    echo '<select class="w-full px-2 py-1 bg-gray-700 border border-gray-600 text-white rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                                 name="status" onchange="this.form.submit()">';
-                    echo '<option value="Đang học"' . ($status === 'Đang học' ? ' selected' : '') . '>Đang học</option>';
-                    echo '<option value="Bảo lưu"' . ($status === 'Bảo lưu' ? ' selected' : '') . '>Bảo lưu</option>';
-                    echo '<option value="Thôi học"' . ($status === 'Thôi học' ? ' selected' : '') . '>Thôi học</option>';
-                    echo '</select>';
-                    echo '</form>';
-                    echo '</td>';
-                    echo '<td class="py-3 px-4 text-center">';
-                    echo '<img src="' . $student['image'] . '" alt="' . $student['name'] . '" class="w-10 h-10 rounded-full mx-auto">';
-                    echo '</td>';
-                    echo '<td class="py-3 px-4 text-center">';
-                    echo '<button class="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded transition-colors" onclick="viewCategory(\'' . $student['id'] . '\')">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                    </svg>
-                                </button>';
-                    echo '<button class="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded transition-colors" onclick="updateCategory(\'' . $student['id'] . '\')">';
+
+                    echo '<button class="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded transition-colors" onclick="updateCategory(\'' . $category['id'] . '\')">';
                     echo '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">';
                     echo '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>';
                     echo '</svg>';
                     echo '</button>';
-                    echo '<button class="p-2 text-gray-400 hover:text-red-400 hover:bg-gray-700 rounded transition-colors" onclick="deleteCategory(\'' . $student['id'] . '\')">
+                    echo '<button class="p-2 text-gray-400 hover:text-red-400 hover:bg-gray-700 rounded transition-colors" onclick="deleteCategory(\'' . $category['id'] . '\')">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                                     </svg>
@@ -154,10 +128,6 @@ $studentsPage = array_slice($sortedStudents, $offset, $perPage);
                     echo '<td class="py-3 px-4">&nbsp;</td>';
                     echo '<td class="py-3 px-4">&nbsp;</td>';
                     echo '<td class="py-3 px-4">&nbsp;</td>';
-                    echo '<td class="py-3 px-4">&nbsp;</td>';
-                    echo '<td class="py-3 px-4">&nbsp;</td>';
-                    echo '<td class="py-3 px-4 text-center">&nbsp;</td>';
-                    echo '<td class="py-3 px-4 text-center">&nbsp;</td>';
                     echo '</tr>';
                 }
                 ?>

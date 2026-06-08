@@ -472,7 +472,7 @@
                 </svg>
             </button>
         </div>
-        <form method="POST" action="actions/add_student.php" enctype="multipart/form-data">
+        <form method="POST" action="actions/add_category.php" method="post">
             <div class="p-4">
                 <div class="mb-4">
                     <label for="CategoryName" class="block text-gray-300 font-medium mb-2">Category Name</label>
@@ -483,7 +483,7 @@
                 <div class="mb-4">
                     <label for="CategoryDescription" class="block text-gray-300 font-medium mb-2">Description</label>
                     <input type="tel" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="CategoryDescription" name="description" required>
+                        id="CategoryDescription" name="description">
                 </div>
 
             </div>

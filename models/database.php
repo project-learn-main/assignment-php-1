@@ -29,7 +29,7 @@ class Database
             die("Lỗi kết nối: " . $this->connection->connect_error);
         }
 
-        echo "Kết nối thành công! <br>";
+        // echo "Kết nối thành công! <br>";
     }
 
     public function disconnect()
