@@ -188,3 +188,5 @@ $customersPage = array_slice($sortedCustomers, $offset, $perPage);
         </div>
     <?php endif; ?>
 </div>
+
+<?php include 'Element/modals.php'; ?>

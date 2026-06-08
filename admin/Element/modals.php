@@ -46,6 +46,7 @@
 </div>
 
 
+
 <!-- Add Product Modal -->
 <div id="addProductModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
     <div class="bg-gray-800 text-white rounded-xl max-w-md w-full mx-4">
@@ -57,7 +58,9 @@
                 </svg>
             </button>
         </div>
-        <form method="POST" action="actions/add_customer.php" enctype="multipart/form-data">
+        <?php 
+?>
+        <form method="POST" action="actions/add_product.php" enctype="multipart/form-data">
             <div class="p-4">
                 <div class="mb-4">
                     <label for="productName" class="block text-gray-300 font-medium mb-2">Product Name</label>
@@ -65,11 +68,20 @@
                         id="productName" name="name" required>
                 </div>
                 <div class="mb-4">
-                    <label for="gender" class="block text-gray-300 font-medium mb-2">Category</label>
-                    <select class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="gender" name="gender" required>
-                        <option value="Category1">Category 1</option>
-                        <option value="Category2">Category 2</option>
+                    <label for="categoryId" class="block text-gray-300 font-medium mb-2">Category</label>
+                    <select
+                        id="categoryId"
+                        name="categoryId"
+                        required
+                        class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    >
+                        <option value="">-- Chọn danh mục --</option>
+
+                        <?php foreach ($categories as $category): ?>
+                            <option value="<?= $category['id'] ?>">
+                                <?= htmlspecialchars($category['name']) ?>
+                            </option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
