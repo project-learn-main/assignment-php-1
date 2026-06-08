@@ -54,8 +54,6 @@ $customersPage = array_slice($sortedCustomers, $offset, $perPage);
                     <th class="text-left py-3 px-4 font-medium text-gray-300">ID</th>
                     <th class="text-left py-3 px-4 font-medium text-gray-300">Full Name</th>
                     <th class="text-left py-3 px-4 font-medium text-gray-300">Email</th>
-                    <th class="text-left py-3 px-4 font-medium text-gray-300">Phone</th>
-                    <th class="text-left py-3 px-4 font-medium text-gray-300">Address</th>
                     <th class="text-left py-3 px-4 font-medium text-gray-300">Role</th>
                     <th class="text-center py-3 px-4 font-medium text-gray-300">Created At</th>
                     <th class="text-center py-3 px-4 font-medium text-gray-300">Actions</th>
@@ -68,8 +66,6 @@ $customersPage = array_slice($sortedCustomers, $offset, $perPage);
                     echo '<td class="py-3 px-4 font-semibold">' . $user['id'] . '</td>';
                     echo '<td class="py-3 px-4">' . $user['fullname'] . '</td>';
                     echo '<td class="py-3 px-4">' . $user['email'] . '</td>';
-                    echo '<td class="py-3 px-4">' . $user['phone'] . '</td>';
-                    echo '<td class="py-3 px-4">' . $user['address'] . '</td>';
                     echo '<td class="py-3 px-4">';
                     $role = $user['role'] ?? 'Pending';
                     echo '<form method="POST" action="actions/update_role_user.php" style="margin: 0;">';
