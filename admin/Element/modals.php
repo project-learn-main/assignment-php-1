@@ -198,7 +198,7 @@
                 </svg>
             </button>
         </div>
-        <form method="POST" action="actions/delete_customer.php">
+        <form method="POST" action="actions/delete_product.php">
             <input type="hidden" id="deleteProductId" name="id">
             <div class="p-4">
                 <div class="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 rounded-full mb-4">

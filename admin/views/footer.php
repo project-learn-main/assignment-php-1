@@ -47,6 +47,22 @@
 <?php endif;
 ?>
 
+<?php if (isset($_COOKIE['product_delete_success'])): ?>
+   <script>
+      showToast('Delete Product Successfully !', 'success');
+      document.cookie = 'product_delete_success=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+   </script>
+<?php endif;
+?>
+
+<?php if (isset($_COOKIE['product_delete_error'])): ?>
+   <script>
+      showToast('Delete Product error', 'error');
+      document.cookie = 'product_delete_error=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+   </script>
+<?php endif;
+?>
+
 </body>
 
 </html>
