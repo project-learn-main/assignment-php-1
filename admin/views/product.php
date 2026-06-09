@@ -109,7 +109,7 @@ $customersPage = array_slice($sortedCustomers, $offset, $perPage);
                     echo '<td class="py-3 px-4">' . $product['description'] . '</td>';
                     echo '<td class="py-3 px-4">' . $product['price'] . '</td>';
                     echo '<td class="py-3 px-4 text-center">';
-                    $imageSrc = !empty($product['image']) ? $product['image'] : 'https://via.placeholder.com/50';
+                    $imageSrc = !empty($product['image']) ? '../images/' . $product['image'] : 'https://via.placeholder.com/50';
                     echo '<img src="' . $imageSrc . '" alt="' . $product['name'] . '" class="w-10 h-10 rounded-full mx-auto">';
                     echo '</td>';
                     echo '<td class="py-3 px-4">' . $product['stock'] . '</td>';
