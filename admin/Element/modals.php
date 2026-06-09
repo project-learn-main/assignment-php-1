@@ -99,7 +99,7 @@
                 <div class="mb-4">
                     <label for="productDescription" class="block text-gray-300 font-medium mb-2">Description</label>
                     <input type="text" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="productDescription" name="description" required>
+                        id="productDescription" name="description" >
                 </div>
                 <div class="mb-4">
                     <label for="productImage" class="block text-gray-300 font-medium mb-2">Product Image</label>
