@@ -1,40 +1,40 @@
 <?php
-include('views/header.php');
-if(isset($_GET['tab'])) {
-    // include 'views/' . $_GET['page'] . '.php';
-    switch($_GET['tab']) {
-        case 'dashboard':
-            include('controllers/dashboardController.php');
-            $controller = new DashboardController();
-            $controller->Render();
-            break;
-        case 'order':
-            include('controllers/orderController.php');
-            $controller = new OrderController();
-            $controller->Render();
-            break;
-        case 'category':
-            include('controllers/categoryController.php');
-            $controller = new CategoryController();
-            $controller->Render();
-            break;
-        case 'product':
-            include('controllers/productController.php');
-            $controller = new ProductController();
-            $controller->Render();
-            break;
-        case 'user':
-            include('controllers/userController.php');
-            $controller = new UserController();
-            $controller->Render();
-            break;
-    }
-} else {
-    include('controllers/dashboardController.php');
-    $controller = new DashboardController();
-    $controller->Render();
+session_start();
+
+if (!isset($_SESSION['admin'])) {
+    header('Location: ./views/login.php');
+    exit();
 }
 
-include 'Element/modals.php';
+// Từ đây là đã đăng nhập
+include('views/header.php');
+
+switch ($_GET['tab'] ?? 'dashboard') {
+
+    case 'dashboard':
+        include('controllers/dashboardController.php');
+        (new DashboardController())->Render();
+        break;
+
+    case 'category':
+        include('controllers/categoryController.php');
+        (new CategoryController())->Render();
+        break;
+
+    case 'product':
+        include('controllers/productController.php');
+        (new ProductController())->Render();
+        break;
+
+    case 'order':
+        include('controllers/orderController.php');
+        (new OrderController())->Render();
+        break;
+
+    case 'user':
+        include('controllers/userController.php');
+        (new UserController())->Render();
+        break;
+}
+
 include('views/footer.php');
-?>

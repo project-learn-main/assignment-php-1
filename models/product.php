@@ -17,7 +17,8 @@ function getAllProduct()
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
-function addProduct($name, $price,$stock, $image, $categoryId, $description) {
+function addProduct($name, $price, $stock, $image, $categoryId, $description)
+{
     global $db;
     $conn = $db->getConnection();
 
