@@ -4,7 +4,7 @@
                 <h1 class="text-3xl font-bold mb-2" style="color: var(--primary);">Quên mật khẩu</h1>
                 <p class="text-sm mb-8 text-gray-600">Nhập email của bạn để lấy lại mật khẩu</p>
 
-                <div id="loginForm">
+                <form id="loginForm" action="?page=forgotpassword" method="post">
                     <!-- Email -->
                     <div class="mb-6">
                         <label for="email" class="block text-sm font-bold mb-2" style="color: var(--primary);">
@@ -28,9 +28,9 @@
 
                     <!-- Submit -->
                     <button type="submit" class="w-full py-3 text-lg text-white rounded transition-all duration-300 mb-4" style="background-color: var(--primary);">
-                       <a href="?page=changepassword" class="text-white no-underline">Gửi yêu cầu</a>
+                    Gửi yêu cầu
                     </button>
-                </div>
+                </form>
 
                 <!-- Signup Link -->
                 <p class="text-center text-sm text-gray-600">

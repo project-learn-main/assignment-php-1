@@ -2,29 +2,13 @@
         <div class="max-w-md mx-auto px-4">
             <div class="bg-white rounded-lg p-8 border" style="border-color: var(--border-light);">
                 <h1 class="text-3xl font-bold mb-2" style="color: var(--primary);">Quên mật khẩu</h1>
-                <p class="text-sm mb-8 text-gray-600">Nhập email của bạn để lấy lại mật khẩu</p>
+                <!-- <p class="text-sm mb-8 text-gray-600">Mật khẩu ban đầu của bạn: <span style="color: red;"><?= htmlspecialchars($user['password']) ?></span></p> -->
 
-                <form id="loginForm" action="" method="POST">
-                    <!-- Email -->
-                    <div class="mb-6">
-                        <label for="email" class="block text-sm font-bold mb-2" style="color: var(--primary);">
-                            Email
-                        </label>
-                        <input 
-                            type="email" 
-                            id="email" 
-                            class="w-full px-4 py-3 border rounded transition-all duration-300 focus:outline-none" 
-                            placeholder="your@email.com"
-                            style="border-color: var(--border-light);"
-                            name="email"
-                            required
-                        >
-                    </div>
-
+                <form id="loginForm" action="?page=changepassword" method="POST">
                     <!-- Password -->
                     <div class="mb-8">
                         <label for="password" class="block text-sm font-bold mb-2" style="color: var(--primary);">
-                            Mật Khẩu
+                            Mật Khẩu mới
                         </label>
                         <input 
                             type="password" 
@@ -35,6 +19,22 @@
                             name="password"
                             required
                         >
+                    </div>
+
+                     <div class="mb-8">
+                        <label for="password" class="block text-sm font-bold mb-2" style="color: var(--primary);">
+                            Nhập Lại Mật Khẩu
+                        </label>
+                        <input 
+                            type="password" 
+                            id="confirmPassword" 
+                            class="w-full px-4 py-3 border rounded transition-all duration-300 focus:outline-none" 
+                            placeholder="••••••••"
+                            style="border-color: var(--border-light);"
+                            name="confirmPassword"
+                            required
+                        >
+                        <p class="text-xs mt-2 text-red-600" id="error"></p>
                     </div>
 
                     <!-- Remember & Forgot -->
@@ -56,3 +56,18 @@
             </div>
         </div>
     </section>
+    <script>
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirmPassword");
+    const error = document.getElementById("error");
+
+    confirmPassword.addEventListener("input", function () {
+    if (password.value !== confirmPassword.value) {
+        confirmPassword.setCustomValidity("Mật khẩu xác nhận không khớp");
+        error.textContent = "Mật khẩu xác nhận không khớp!";
+    } else {
+        confirmPassword.setCustomValidity("");
+        error.textContent = "";
+    }
+});
+</script>
