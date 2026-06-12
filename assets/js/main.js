@@ -39,3 +39,18 @@ function showToast(message, type = "success") {
     setTimeout(() => toast.remove(), 300);
   }, 3000);
 }
+function filterCategory(category) {
+  const products = document.querySelectorAll(".product-card");
+
+  products.forEach((product) => {
+    const productCategory = product.dataset.category;
+
+    console.log(category, productCategory);
+
+    if (category === "all" || category === productCategory) {
+      product.style.display = "";
+    } else {
+      product.style.display = "none";
+    }
+  });
+}

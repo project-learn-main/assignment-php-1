@@ -38,7 +38,7 @@
     </div>
   </div>
 </footer>
-<script src="assets/js/main.js"></script>
+<script src="./assets/js/main.js"></script>
 
 <!-- toast -->
 <?php if (isset($_COOKIE['register_success'])): ?>
