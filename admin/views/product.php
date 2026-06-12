@@ -92,6 +92,7 @@ $customersPage = array_slice($sortedCustomers, $offset, $perPage);
                     <th class="text-left py-3 px-4 font-medium text-gray-300">Price</th>
                     <th class="text-left py-3 px-4 font-medium text-gray-300">Image</th>
                     <th class="text-center py-3 px-4 font-medium text-gray-300">Stock</th>
+                    <th class="text-center py-3 px-4 font-medium text-gray-300">Create by</th>
                     <th class="text-center py-3 px-4 font-medium text-gray-300">Create At</th>
                     <th class="text-center py-3 px-4 font-medium text-gray-300">Actions</th>
                 </tr>
@@ -111,9 +112,10 @@ $customersPage = array_slice($sortedCustomers, $offset, $perPage);
                     echo '<td class="py-3 px-4 text-center">';
                     $imageSrc = !empty($product['image']) ? 'images/' . $product['image'] : 'https://via.placeholder.com/50';
                     echo '<img src="' . $imageSrc . '" alt="' . $product['name'] . '" class="w-12 h-12  mx-auto">';
-                    
+
                     echo '</td>';
                     echo '<td class="py-3 px-4">' . $product['stock'] . '</td>';
+                    echo '<td class="py-3 px-4">' . $product['fullname'] . '</td>';
                     echo '<td class="py-3 px-4 text-center">';
                     echo date('d/m/Y', strtotime($product['created_at']));
                     echo '</td>';
