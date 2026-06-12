@@ -578,13 +578,11 @@ function viewCategory(categoryId) {
 }
 
 function updateCategory(categoryId) {
-  console.log("🚀 ~ updateUser ~ userID:", categoryId);
   // Get product data from table row
   const row = document.querySelector(`tr[data-category-id="${categoryId}"]`);
   if (!row) return;
 
   const cells = row.querySelectorAll("td");
-  const id = cells[0].textContent;
   const name = cells[1].textContent;
   const description = cells[2].textContent;
 

@@ -4,23 +4,48 @@ session_start();
 if (!isset($_SESSION['admin_id'])) {
     header('Location: ./views/login.php');
     exit();
-} else {
-    header('Location: ');
 }
 
-// Từ đây là đã đăng nhập
+$tab = $_GET['tab'] ?? 'dashboard';
+$action = $_GET['action'] ?? null;
+
+if ($tab == 'category') {
+    include('controllers/categoryController.php');
+    $controller = new CategoryController();
+
+    if ($action == 'create') {
+        $controller->Create();
+        exit();
+    }
+
+    if ($action == 'update') {
+        $controller->Update();
+        exit();
+    }
+
+    if ($action == 'delete') {
+        $controller->Delete();
+        exit();
+    }
+}
+
+
+// Từ đây mới bắt đầu hiển thị giao diện
 include('views/header.php');
 
-switch ($_GET['tab'] ?? 'dashboard') {
-
+switch ($tab) {
     case 'dashboard':
         include('controllers/dashboardController.php');
         (new DashboardController())->Render();
         break;
 
     case 'category':
-        include('controllers/categoryController.php');
-        (new CategoryController())->Render();
+        if (!isset($controller)) {
+            include('controllers/categoryController.php');
+            $controller = new CategoryController();
+        }
+
+        $controller->Render();
         break;
 
     case 'product':

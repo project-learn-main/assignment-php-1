@@ -478,7 +478,7 @@
                 </svg>
             </button>
         </div>
-        <form method="POST" action="actions/add_category.php" method="post">
+        <form method="POST" action="index.php?tab=category&action=create" method="post">
             <div class="p-4">
                 <div class="mb-4">
                     <label for="CategoryName" class="block text-gray-300 font-medium mb-2">Category Name</label>
@@ -512,8 +512,8 @@
                 </svg>
             </button>
         </div>
-        <form method="POST" action="actions/update_category.php" enctype="multipart/form-data">
-            <input type="hidden" id="updateCategoryId" name="id">
+        <form method="POST" action="index.php?tab=category&action=update" enctype="multipart/form-data">
+            <input type="text" id="updateCategoryId" name="id">
             <div class="p-4">
                 <div class="mb-4">
                     <label for="updateCategoryName" class="block text-gray-300 font-medium mb-2">Name</label>
@@ -546,7 +546,7 @@
                 </svg>
             </button>
         </div>
-        <form method="POST" action="actions/delete_category.php">
+        <form method="POST" action="index.php?tab=category&action=delete">
             <input type="hidden" id="deleteCategoryId" name="id">
             <div class="p-4">
                 <div class="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 rounded-full mb-4">
