@@ -45,8 +45,6 @@
     </div>
 </div>
 
-
-
 <!-- Add Product Modal -->
 <div id="addProductModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
     <div class="bg-gray-800 text-white rounded-xl max-w-md w-full mx-4">
@@ -517,77 +515,27 @@
                 </svg>
             </button>
         </div>
-        <form method="POST" action="actions/update_student.php" enctype="multipart/form-data">
+        <form method="POST" action="actions/update_category.php" enctype="multipart/form-data">
             <input type="hidden" id="updateCategoryId" name="id">
             <div class="p-4">
                 <div class="mb-4">
-                    <label for="updateCategoryName" class="block text-gray-300 font-medium mb-2">Full Name</label>
+                    <label for="updateCategoryName" class="block text-gray-300 font-medium mb-2">Name</label>
                     <input type="text" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         id="updateCategoryName" name="name" required>
                 </div>
                 <div class="mb-4">
-                    <label for="updateCategoryEmail" class="block text-gray-300 font-medium mb-2">Email Address</label>
-                    <input type="email" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="updateCategoryEmail" name="email" required>
-                </div>
-                <div class="mb-4">
-                    <label for="updateCategoryIdNum" class="block text-gray-300 font-medium mb-2">Category ID</label>
+                    <label for="updateCategoryDescription" class="block text-gray-300 font-medium mb-2">Description</label>
                     <input type="text" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="updateCategoryIdNum" name="studentId" readonly>
-                </div>
-                <div class="mb-4">
-                    <label for="updateCategoryPhone" class="block text-gray-300 font-medium mb-2">Sô diên thoai</label>
-                    <input type="tel" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="updateCategoryPhone" name="phone" required>
-                </div>
-                <div class="mb-4">
-                    <label for="updateCategoryGender" class="block text-gray-300 font-medium mb-2">Giói tính</label>
-                    <select class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" id="updateCategoryGender" name="gender" required>
-                        <option value="">Chon giói tính</option>
-                        <option value="Nam">Nam</option>
-                        <option value="Nữ">Nữ</option>
-                    </select>
-                </div>
-                <div class="mb-4">
-                    <label for="updateCategoryAddress" class="block text-gray-300 font-medium mb-2">Quê quán</label>
-                    <input type="text" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="updateCategoryAddress" name="address" required>
-                </div>
-                <div class="mb-4">
-                    <label for="updateCategoryStatus" class="block text-gray-300 font-medium mb-2">Trang thái</label>
-                    <select class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" id="updateCategoryStatus" name="status" required>
-                        <option value="">Chon trang thái</option>
-                        <option value="Đang học">Đang học</option>
-                        <option value="Bảo lưu">Bảo lưu</option>
-                        <option value="Thôi học">Thôi học</option>
-                    </select>
-                </div>
-                <div class="mb-4">
-                    <label for="updateCategoryImage" class="block text-gray-300 font-medium mb-2">Hinh anh</label>
-                    <div class="space-y-3">
-                        <!-- Current Image Display -->
-                        <div class="flex items-center space-x-4">
-                            <img id="currentCategoryImage" src="https://via.placeholder.com/50" alt="Current Image" class="w-16 h-16 rounded-full object-cover">
-                            <div>
-                                <p class="text-sm text-gray-400">Current Image</p>
-                                <p id="currentCategoryImagePath" class="text-xs text-gray-500">No image</p>
-                            </div>
-                        </div>
-                        <!-- New Image Upload -->
-                        <div>
-                            <label class="block text-sm text-gray-400 mb-1">Upload New Image (Optional)</label>
-                            <input type="file" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent file:text-gray-400"
-                                id="updateCategoryImage" name="image" accept="image/*">
-                        </div>
-                    </div>
+                        id="updateCategoryDescription" name="description">
                 </div>
             </div>
             <div class="flex items-center justify-end gap-2 p-4 border-t border-gray-700">
                 <button type="button" class="px-4 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors" onclick="closeModal('updateCategoryModal')">Cancel</button>
                 <button type="submit" class="px-4 py-2 bg-primary text-white rounded-lg hover:opacity-80 transition-colors">Update Category</button>
             </div>
-        </form>
     </div>
+    </form>
+</div>
 </div>
 
 <!-- Delete Category Modal -->

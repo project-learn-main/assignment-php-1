@@ -596,36 +596,14 @@ function updateCategory(categoryId) {
   if (!row) return;
 
   const cells = row.querySelectorAll("td");
-  const id = cells[0].textContent; // Mã SV
-  const name = cells[1].textContent; // Tên SV
-  const email = cells[2].textContent; // Email
-  const phone = cells[3].textContent; // Sô diên thoai
-  const gender = cells[4].textContent; // Giói tính
-  const address = cells[5].textContent; // Quê quán
-  // const status = cells[6].querySelector("select").value; // Trang thái
+  const id = cells[0].textContent;
+  const name = cells[1].textContent;
+  const description = cells[2].textContent;
 
   // Populate update modal with table data
   document.getElementById("updateCategoryId").value = categoryId;
   document.getElementById("updateCategoryName").value = name;
-  document.getElementById("updateCategoryPhone").value = phone;
-  // Set gender select value manually
-  const genderSelect = document.getElementById("updateCategoryGender");
-  for (let i = 0; i < genderSelect.options.length; i++) {
-    genderSelect.options[i].selected = genderSelect.options[i].value === gender;
-  }
-
-  document.getElementById("updateCategoryAddress").value = address;
-
-  // Set status select value manually
-  const statusSelect = document.getElementById("updateCategoryStatus");
-  // for (let i = 0; i < statusSelect.options.length; i++) {
-  //   statusSelect.options[i].selected = statusSelect.options[i].value === status;
-  // }
-
-  // Get image src from img element in cell 8
-  const imageCell = cells[7];
-  const imgElement = imageCell.querySelector("img");
-  const imageSrc = imgElement ? imgElement.src : "";
+  document.getElementById("updateCategoryDescription").value = description;
 
   openModal("updateCategoryModal");
 }

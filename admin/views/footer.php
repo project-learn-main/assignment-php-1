@@ -21,6 +21,22 @@
    </script>
 <?php endif; ?>
 
+<?php if (isset($_COOKIE['category_update_success'])): ?>
+   <script>
+      showToast('Update Category Successfully !', 'success');
+      document.cookie = 'category_update_success=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+   </script>
+<?php endif;
+?>
+
+<?php if (isset($_COOKIE['category_update_error'])): ?>
+   <script>
+      showToast('Update category errro', 'error');
+      document.cookie = 'category_update_error=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+   </script>
+<?php endif;
+?>
+
 <?php if (isset($_COOKIE['category_delete_success'])): ?>
    <script>
       showToast('Delete Category Successfully !', 'success');
