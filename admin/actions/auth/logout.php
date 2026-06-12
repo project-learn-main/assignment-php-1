@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-setcookie('email', '', time() - 3600, '/');
-setcookie('name', '', time() - 3600, '/');
+session_unset();     // Xóa toàn bộ biến session
+session_destroy();   // Hủy session
 
-header('Location: login.php');
+header('Location: ../../views/login.php');
 exit();
