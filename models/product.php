@@ -21,6 +21,21 @@ function getAllProduct()
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
+function getProductByCategory()
+{
+    $products = getAllProduct();
+
+    $productsByCategory = [];
+
+    foreach ($products as $product) {
+        $category = $product['category_name'];
+
+        $productsByCategory[$category][] = $product;
+    }
+
+    return $productsByCategory;
+}
+
 function addProduct($name, $price, $stock, $image, $categoryId, $description, $created_by)
 {
     global $db;
