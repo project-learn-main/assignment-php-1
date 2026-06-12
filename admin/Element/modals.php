@@ -123,7 +123,7 @@
                 </svg>
             </button>
         </div>
-        <form method="POST" action="actions/update_customer.php" enctype="multipart/form-data">
+        <form method="POST" action="actions/update_product.php" enctype="multipart/form-data">
             <input type="hidden" id="updateProductId" name="id">
             <div class="p-4">
                 <div class="mb-4">
@@ -135,7 +135,7 @@
                 <div class="mb-4">
                     <label for="categoryId" class="block text-gray-300 font-medium mb-2">Category</label>
                     <select
-                        id="categoryId"
+                        id="updateCategoryId"
                         name="categoryId"
                         required
                         class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
@@ -152,24 +152,23 @@
                 <div class="mb-4">
                     <label for="updateProductDescription" class="block text-gray-300 font-medium mb-2">Description</label>
                     <input type="text" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="updateProductDescription" name="address" required>
+                        id="updateProductDescription" name="description" required>
                 </div>
                 <div class="mb-4">
                     <label for="updateProductPersonalImage" class="block text-gray-300 font-medium mb-2">Product Image</label>
                     <div class="space-y-3">
                         <!-- Current Image Display -->
                         <div class="flex items-center space-x-4">
-                            <img id="currentProductImage" src="https://via.placeholder.com/50" alt="Current Image" class="w-16 h-16 rounded-full object-cover">
+                            <img id="currentProductImage" src="https://via.placeholder.com/50" alt="Current Image" class="w-24 h-24 object-cover">
                             <div>
                                 <p class="text-sm text-gray-400">Current Image</p>
-                                <p id="currentProductImagePath" class="text-xs text-gray-500">No image</p>
                             </div>
                         </div>
                         <!-- New Image Upload -->
                         <div>
                             <label class="block text-sm text-gray-400 mb-1">Upload New Image (Optional)</label>
                             <input type="file" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent file:text-gray-400"
-                                id="updateProductPersonalImage" name="personal_image" accept="image/*">
+                                id="updateProductPersonalImage" name="image" accept="image/*">
                         </div>
                     </div>
                 </div>

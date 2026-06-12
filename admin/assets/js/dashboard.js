@@ -369,6 +369,7 @@ function deleteCustomer(customerId) {
 }
 
 function updateProduct(productId, categoryId) {
+  console.log("🚀 ~ updateProduct ~ categoryId:", categoryId);
   // Get product data from table row
   const row = document.querySelector(`tr[data-product-id="${productId}"]`);
   console.log("🚀 ~ updateProduct ~ row:", row);
@@ -378,15 +379,15 @@ function updateProduct(productId, categoryId) {
   console.log("🚀 ~ updateProduct ~ cells:", cells);
   const id = cells[0].textContent;
   const name = cells[1].textContent;
-  const description = cells[1].textContent;
+  const description = cells[3].textContent;
 
   // Populate update modal with table data
   document.getElementById("updateProductId").value = productId;
   document.getElementById("updateProductName").value = name;
   document.getElementById("updateProductDescription").value = description;
-  document.getElementById("categoryId").value = categoryId;
+  document.getElementById("updateCategoryId").value = categoryId;
 
-  // Get image src from img element in cell 8
+  // Get image src from img element in cell 6
   const imageCell = cells[5];
   const imgElement = imageCell.querySelector("img");
   const imageSrc = imgElement ? imgElement.src : "";
@@ -395,9 +396,6 @@ function updateProduct(productId, categoryId) {
   // Display current image in modal
   document.getElementById("currentProductImage").src =
     imageSrc || "https://via.placeholder.com/50";
-
-  document.getElementById("currentProductImagePath").textContent =
-    imageSrc || "No image";
 
   openModal("updateProductModal");
 }
