@@ -21,6 +21,56 @@ function getAllProduct()
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
+function createProduct($name, $price, $stock, $image, $categoryId, $description, $created_by)
+{
+    var_dump("🚀 ~ createProduct ~ $categoryId:", $categoryId);
+    global $db;
+    $conn = $db->getConnection();
+
+    $query = "INSERT INTO products (name, price, stock, image, category_id, description,created_by) VALUES ('$name', '$price', '$stock', '$image', '$categoryId', '$description','$created_by')";
+
+    $result = mysqli_query($conn, $query);
+
+    return $result;
+}
+
+function updateProduct($id, $name, $price, $stock, $image, $categoryId, $description)
+{
+    global $db;
+    $conn = $db->getConnection();
+
+    $query = "
+        UPDATE products
+        SET
+            name = '$name',
+            price = '$price',
+            stock = '$stock',
+            category_id = '$categoryId',
+            description = '$description'
+    ";
+
+    // Chỉ cập nhật ảnh nếu có ảnh mới
+    if (!empty($image)) {
+        $query .= ", image = '$image'";
+    }
+
+    $query .= " WHERE id = '$id'";
+
+    return mysqli_query($conn, $query);
+}
+
+function deleteProduct($id)
+{
+    global $db;
+    $conn = $db->getConnection();
+
+    $query = "DELETE FROM products WHERE id = $id";
+
+    $result = mysqli_query($conn, $query);
+
+    return $result;
+}
+
 function getProductByCategory()
 {
     $products = getAllProduct();

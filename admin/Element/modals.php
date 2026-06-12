@@ -58,7 +58,7 @@
         </div>
         <?php
         ?>
-        <form method="POST" action="actions/add_product.php" enctype="multipart/form-data">
+        <form method="POST" action="index.php?tab=product&action=create" enctype="multipart/form-data">
             <div class="p-4">
                 <div class="mb-4">
                     <label for="productName" class="block text-gray-300 font-medium mb-2">Product Name</label>
@@ -123,7 +123,7 @@
                 </svg>
             </button>
         </div>
-        <form method="POST" action="actions/update_product.php" enctype="multipart/form-data">
+        <form method="POST" action="index.php?tab=product&action=update" enctype="multipart/form-data">
             <input type="hidden" id="updateProductId" name="id">
             <div class="p-4">
                 <div class="mb-4">
@@ -147,6 +147,18 @@
                             </option>
                         <?php endforeach; ?>
                     </select>
+                </div>
+
+                <div class="mb-4">
+                    <label for="updateProductPrice" class="block text-gray-300 font-medium mb-2">Price</label>
+                    <input type="number" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        id="updateProductPrice" name="price" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="updateProductStock" class="block text-gray-300 font-medium mb-2">Stock</label>
+                    <input type="number" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        id="updateProductStock" name="stock" required>
                 </div>
 
                 <div class="mb-4">
@@ -192,7 +204,7 @@
                 </svg>
             </button>
         </div>
-        <form method="POST" action="actions/delete_product.php">
+        <form method="POST" action="index.php?tab=product&action=delete">
             <input type="hidden" id="deleteProductId" name="id">
             <div class="p-4">
                 <div class="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 rounded-full mb-4">

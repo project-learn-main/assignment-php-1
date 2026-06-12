@@ -372,7 +372,6 @@ function updateProduct(productId, categoryId) {
   console.log("🚀 ~ updateProduct ~ categoryId:", categoryId);
   // Get product data from table row
   const row = document.querySelector(`tr[data-product-id="${productId}"]`);
-  console.log("🚀 ~ updateProduct ~ row:", row);
   if (!row) return;
 
   const cells = row.querySelectorAll("td");
@@ -380,11 +379,15 @@ function updateProduct(productId, categoryId) {
   const id = cells[0].textContent;
   const name = cells[1].textContent;
   const description = cells[3].textContent;
+  const price = cells[4].textContent;
+  const stock = cells[6].textContent;
 
   // Populate update modal with table data
   document.getElementById("updateProductId").value = productId;
   document.getElementById("updateProductName").value = name;
   document.getElementById("updateProductDescription").value = description;
+  document.getElementById("updateProductPrice").value = price;
+  document.getElementById("updateProductStock").value = stock;
   document.getElementById("updateCategoryId").value = categoryId;
 
   // Get image src from img element in cell 6

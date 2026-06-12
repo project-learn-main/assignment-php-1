@@ -29,6 +29,24 @@ if ($tab == 'category') {
     }
 }
 
+if ($tab == 'product') {
+    include_once('controllers/productController.php');
+    $controller = new ProductController();
+
+    if ($action == 'create') {
+        $controller->Create();
+        exit();
+    }
+    if ($action == 'update') {
+        $controller->Update();
+        exit();
+    }
+
+    if ($action == 'delete') {
+        $controller->Delete();
+        exit();
+    }
+}
 
 // Từ đây mới bắt đầu hiển thị giao diện
 include('views/header.php');
@@ -49,7 +67,7 @@ switch ($tab) {
         break;
 
     case 'product':
-        include('controllers/productController.php');
+        include_once('controllers/productController.php');
         (new ProductController())->Render();
         break;
 
