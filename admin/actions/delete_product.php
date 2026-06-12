@@ -1,8 +1,7 @@
 <?php
-session_start();
 if (isset($_POST['id'])) {
     $id = $_POST['id'];
-    
+
     $query = "delete from products where id = $id";
     include('../../models/database.php');
     $conn = $db->getConnection();
@@ -12,7 +11,6 @@ if (isset($_POST['id'])) {
     } else {
         setcookie('product_delete_error', 'true', time() + 10, "/");
     }
-    
+
     header('Location: ../index.php?tab=product');
 }
-?>

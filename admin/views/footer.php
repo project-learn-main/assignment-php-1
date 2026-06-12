@@ -21,6 +21,22 @@
    </script>
 <?php endif; ?>
 
+<?php if (isset($_COOKIE['category_delete_success'])): ?>
+   <script>
+      showToast('Delete Category Successfully !', 'success');
+      document.cookie = 'category_delete_success=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+   </script>
+<?php endif;
+?>
+
+<?php if (isset($_COOKIE['category_delete_error'])): ?>
+   <script>
+      showToast('Không thể xóa danh mục vì vẫn còn sản phẩm thuộc danh mục này.', 'error');
+      document.cookie = 'category_delete_error=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+   </script>
+<?php endif;
+?>
+
 <?php if (isset($_COOKIE['category_add_error'])): ?>
    <script>
       showToast('Add Category error', 'error');

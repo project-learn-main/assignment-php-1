@@ -58,8 +58,8 @@
                 </svg>
             </button>
         </div>
-        <?php 
-?>
+        <?php
+        ?>
         <form method="POST" action="actions/add_product.php" enctype="multipart/form-data">
             <div class="p-4">
                 <div class="mb-4">
@@ -73,8 +73,7 @@
                         id="categoryId"
                         name="categoryId"
                         required
-                        class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    >
+                        class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         <option value="">-- Chọn danh mục --</option>
 
                         <?php foreach ($categories as $category): ?>
@@ -99,7 +98,7 @@
                 <div class="mb-4">
                     <label for="productDescription" class="block text-gray-300 font-medium mb-2">Description</label>
                     <input type="text" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="productDescription" name="description" >
+                        id="productDescription" name="description">
                 </div>
                 <div class="mb-4">
                     <label for="productImage" class="block text-gray-300 font-medium mb-2">Product Image</label>
@@ -501,7 +500,7 @@
             </div>
             <div class="flex items-center justify-end gap-2 p-4 border-t border-gray-700">
                 <button type="button" class="px-4 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors" onclick="closeModal('addCategoryModal')">Cancel</button>
-                <button type="submit" class="px-4 py-2 bg-primary text-white rounded-lg hover:opacity-80 transition-colors">Add Student</button>
+                <button type="submit" class="px-4 py-2 bg-primary text-white rounded-lg hover:opacity-80 transition-colors">Add Category</button>
             </div>
         </form>
     </div>
@@ -602,7 +601,7 @@
                 </svg>
             </button>
         </div>
-        <form method="POST" action="actions/delete_student.php">
+        <form method="POST" action="actions/delete_category.php">
             <input type="hidden" id="deleteCategoryId" name="id">
             <div class="p-4">
                 <div class="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 rounded-full mb-4">

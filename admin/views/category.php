@@ -89,6 +89,7 @@ $studentsPage = array_slice($sortedStudents, $offset, $perPage);
                     <th class="text-left py-3 px-4 font-medium text-gray-300">ID</th>
                     <th class="text-left py-3 px-4 font-medium text-gray-300">Name</th>
                     <th class="text-left py-3 px-4 font-medium text-gray-300">Description</th>
+                    <th class="text-left py-3 px-4 font-medium text-gray-300">Created By</th>
                     <th class="text-left py-3 px-4 font-medium text-gray-300">Created At</th>
                     <th class="text-left py-3 px-4 font-medium text-gray-300">Actions</th>
                 </tr>
@@ -103,6 +104,7 @@ $studentsPage = array_slice($sortedStudents, $offset, $perPage);
                     echo '<td class="py-3 px-4 font-semibold">' . $category['id'] . '</td>';
                     echo '<td class="py-3 px-4">' . $category['name'] . '</td>';
                     echo '<td class="py-3 px-4">' . $category['description'] . '</td>';
+                    echo '<td class="py-3 px-4">' . $category['created_by'] . '</td>';
                     echo '<td class="py-3 px-4">' . ($category['created_at'] ?? '') . '</td>';
                     echo '<td class="py-3 px-4">';
 
@@ -167,3 +169,4 @@ $studentsPage = array_slice($sortedStudents, $offset, $perPage);
         </div>
     <?php endif; ?>
 </div>
+<?php include 'Element/modals.php'; ?>
