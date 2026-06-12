@@ -1,5 +1,19 @@
 <script src="assets/js/dashboard.js"></script>
 
+<?php if (isset($_COOKIE['login_success'])): ?>
+   <script>
+      showToast('Login Successfully !', 'success');
+      document.cookie = 'login_success=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+   </script>
+<?php endif; ?>
+
+<?php if (isset($_COOKIE['login_error'])): ?>
+   <script>
+      showToast('Email hoặc mật khẩu không đúng !', 'error');
+      document.cookie = 'login_error=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+   </script>
+<?php endif; ?>
+
 <?php if (isset($_COOKIE['category_add_success'])): ?>
    <script>
       showToast('Add Category Successfully !', 'success');

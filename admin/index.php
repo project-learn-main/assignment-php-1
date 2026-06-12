@@ -1,9 +1,11 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['admin'])) {
+if (!isset($_SESSION['admin_id'])) {
     header('Location: ./views/login.php');
     exit();
+} else {
+    header('Location: ');
 }
 
 // Từ đây là đã đăng nhập
