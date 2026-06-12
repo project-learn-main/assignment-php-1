@@ -133,31 +133,29 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="updateProductPhone" class="block text-gray-300 font-medium mb-2">Phone Number</label>
-                    <input type="tel" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="updateProductPhone" name="phone" required>
-                </div>
-                <div class="mb-4">
-                    <label for="updateProductDateOfBirth" class="block text-gray-300 font-medium mb-2">Date Of Birth</label>
-                    <input type="date" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="updateProductDateOfBirth" name="dateOfBirth" required>
-                </div>
-                <div class="mb-4">
-                    <label for="updateProductGender" class="block text-gray-300 font-medium mb-2">Gender</label>
-                    <select class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="updateProductGender" name="gender" required>
-                        <option value="">Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                    <label for="categoryId" class="block text-gray-300 font-medium mb-2">Category</label>
+                    <select
+                        id="categoryId"
+                        name="categoryId"
+                        required
+                        class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <option value="">-- Chọn danh mục --</option>
+
+                        <?php foreach ($categories as $category): ?>
+                            <option value="<?= $category['id'] ?>">
+                                <?= htmlspecialchars($category['name']) ?>
+                            </option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
+
                 <div class="mb-4">
-                    <label for="updateProductAddress" class="block text-gray-300 font-medium mb-2">Address</label>
+                    <label for="updateProductDescription" class="block text-gray-300 font-medium mb-2">Description</label>
                     <input type="text" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="updateProductAddress" name="address" required>
+                        id="updateProductDescription" name="address" required>
                 </div>
                 <div class="mb-4">
-                    <label for="updateProductPersonalImage" class="block text-gray-300 font-medium mb-2">Personal Image</label>
+                    <label for="updateProductPersonalImage" class="block text-gray-300 font-medium mb-2">Product Image</label>
                     <div class="space-y-3">
                         <!-- Current Image Display -->
                         <div class="flex items-center space-x-4">

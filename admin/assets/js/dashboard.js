@@ -368,46 +368,36 @@ function deleteCustomer(customerId) {
   openModal("deleteCustomerModal");
 }
 
-function updateProduct(productId) {
+function updateProduct(productId, categoryId) {
   // Get product data from table row
   const row = document.querySelector(`tr[data-product-id="${productId}"]`);
   console.log("🚀 ~ updateProduct ~ row:", row);
   if (!row) return;
 
   const cells = row.querySelectorAll("td");
-  const id = cells[0].textContent; // Mã SV
-  const name = cells[1].textContent; // Tên SV
-  const email = cells[2].textContent; // Email
-  const phone = cells[3].textContent; // Sô diên thoai
-  const gender = cells[4].textContent; // Giói tính
-  const address = cells[5].textContent; // Quê quán
-  // const status = cells[6].querySelector("select").value; // Trang thái
+  console.log("🚀 ~ updateProduct ~ cells:", cells);
+  const id = cells[0].textContent;
+  const name = cells[1].textContent;
+  const description = cells[1].textContent;
 
   // Populate update modal with table data
   document.getElementById("updateProductId").value = productId;
   document.getElementById("updateProductName").value = name;
-  document.getElementById("updateProductPhone").value = phone;
-  // Set gender select value manually
-  const genderSelect = document.getElementById("updateProductGender");
-  for (let i = 0; i < genderSelect.options.length; i++) {
-    genderSelect.options[i].selected = genderSelect.options[i].value === gender;
-  }
-
-  document.getElementById("updateProductAddress").value = address;
-
-  // Set status select value manually
-  const statusSelect = document.getElementById("updateProductStatus");
-  // for (let i = 0; i < statusSelect.options.length; i++) {
-  //   statusSelect.options[i].selected = statusSelect.options[i].value === status;
-  // }
+  document.getElementById("updateProductDescription").value = description;
+  document.getElementById("categoryId").value = categoryId;
 
   // Get image src from img element in cell 8
-  const imageCell = cells[7];
+  const imageCell = cells[5];
   const imgElement = imageCell.querySelector("img");
   const imageSrc = imgElement ? imgElement.src : "";
+  console.log("🚀 ~ updateProduct ~ imageSrc:", imageSrc);
 
   // Display current image in modal
-  //
+  document.getElementById("currentProductImage").src =
+    imageSrc || "https://via.placeholder.com/50";
+
+  document.getElementById("currentProductImagePath").textContent =
+    imageSrc || "No image";
 
   openModal("updateProductModal");
 }
