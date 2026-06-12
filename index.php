@@ -16,6 +16,16 @@ if(isset($_GET['page'])) {
             $controller = new RegisterController();
             $controller->Render();
             break;
+        case 'forgotpassword':
+            include('controllers/forgotpasswordController.php');
+            $controller = new ForgotpasswordController();
+            $controller->Render();
+            break;
+        case 'changepassword':
+            include('controllers/changepasswordController.php');
+            $controller = new ChangepasswordController();
+            $controller->Render();
+            break;
         case 'products':
             include('controllers/productsController.php');
             $controller = new ProductsController();
