@@ -39,7 +39,7 @@ $customersPage = array_slice($sortedCustomers, $offset, $perPage);
                 <div class="border-primary border-2 rounded-lg flex items-center justify-center w-12 h-12">
                     <img src="assets/images/avartar.webp" alt="Avatar" class="w-12 h-12 rounded-full">
                 </div>
-                <!-- <h1 class="text-white text-lg">Hello, <?php echo $_COOKIE['name']; ?></h1> -->
+                <h1 class="text-white text-lg">Hello, <?php echo $_SESSION['admin_name']; ?></h1>
             </div>
         </div>
         <h2 class="text-white text-2xl font-semibold">Users</h2>

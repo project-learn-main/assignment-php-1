@@ -59,15 +59,15 @@ $genderLabels = [
 
 <div class="p-6 w-full">
     <div class="flex justify-end w-full">
-           <div class="flex items-center gap-3">
-               <div class="border-primary border-2 rounded-lg flex items-center justify-center w-12 h-12">
-                   <img src="assets/images/avartar.webp" alt="Avatar" class="w-12 h-12 rounded-full">
-               </div>
-               <h1 class="text-white text-lg">Hello, <?php echo $_COOKIE['name']; ?></h1>
-           </div>
-       </div>
+        <div class="flex items-center gap-3">
+            <div class="border-primary border-2 rounded-lg flex items-center justify-center w-12 h-12">
+                <img src="assets/images/avartar.webp" alt="Avatar" class="w-12 h-12 rounded-full">
+            </div>
+            <h1 class="text-white text-lg">Hello, <?php echo $_SESSION['admin_name']; ?></h1>
+        </div>
+    </div>
     <h2 class="text-2xl font-bold text-white mb-6 capitalize">Bảng điều khiển</h2>
-    
+
     <!-- Statistics Cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <!-- Orders Card -->
@@ -172,6 +172,6 @@ $genderLabels = [
             </div>
         </div>
 
-       
+
     </div>
 </div>
