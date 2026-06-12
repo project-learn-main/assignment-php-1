@@ -57,48 +57,50 @@
                         <!-- Image -->
                         <div class="h-56 overflow-hidden bg-gray-100">
                             <img
-                                src="assets/images/<?= $product['image'] ?>"
+                                src="admin/images/<?= $product['image'] ?>"
                                 alt="<?= $product['name'] ?>"
                                 class="w-full h-full object-cover hover:scale-110 transition duration-500">
                         </div>
 
 
                         <!-- Content -->
-                        <div class="p-4">
+                        <a href="?page=product-detail&&id=<?= $product['id'] ?>">
+                            <div class=" p-4">
 
-                            <span class="text-xs px-3 py-1 rounded-full bg-gray-100">
-                                <?= $product['category_name'] ?>
-                            </span>
-
-                            <h3 class="font-bold text-lg mt-3 mb-2"
-                                style="color: var(--primary);">
-                                <?= $product['name'] ?>
-                            </h3>
-
-
-                            <p class="text-gray-500 text-sm h-10 overflow-hidden">
-                                <?= $product['description'] ?>
-                            </p>
-
-
-                            <div class="mt-4 flex justify-between items-center">
-
-                                <span class="font-bold text-xl"
-                                    style="color: var(--accent);">
-                                    <?= number_format($product['price']) ?>₫
+                                <span class="text-xs px-3 py-1 rounded-full bg-gray-100">
+                                    <?= $product['category_name'] ?>
                                 </span>
 
+                                <h3 class="font-bold text-lg mt-3 mb-2"
+                                    style="color: var(--primary);">
+                                    <?= $product['name'] ?>
+                                </h3>
 
-                                <button
-                                    class="px-4 py-2 text-white rounded-lg text-sm hover:opacity-90 transition"
-                                    style="background-color: var(--primary);">
 
-                                    🛒 Mua
-                                </button>
+                                <p class="text-gray-500 text-sm h-10 overflow-hidden">
+                                    <?= $product['description'] ?>
+                                </p>
+
+
+                                <div class="mt-4 flex justify-between items-center">
+
+                                    <span class="font-bold text-xl"
+                                        style="color: var(--accent);">
+                                        <?= number_format($product['price']) ?>₫
+                                    </span>
+
+
+                                    <button
+                                        class="px-4 py-2 text-white rounded-lg text-sm hover:opacity-90 transition"
+                                        style="background-color: var(--primary);">
+
+                                        🛒 Mua
+                                    </button>
+
+                                </div>
 
                             </div>
-
-                        </div>
+                        </a>
 
                     </div>
 

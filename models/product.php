@@ -36,6 +36,30 @@ function getProductByCategory()
     return $productsByCategory;
 }
 
+function getProductById($id)
+{
+    global $db;
+    $conn = $db->getConnection();
+
+    $id = (int)$id;
+
+    $query = "SELECT
+                products.*,
+                categories.name AS category_name,
+                users.fullname
+              FROM products
+              INNER JOIN categories
+                ON products.category_id = categories.id
+              LEFT JOIN users
+                ON products.created_by = users.id
+              WHERE products.id = $id
+              LIMIT 1";
+
+    $result = mysqli_query($conn, $query);
+
+    return mysqli_fetch_assoc($result);
+}
+
 function addProduct($name, $price, $stock, $image, $categoryId, $description, $created_by)
 {
     global $db;
