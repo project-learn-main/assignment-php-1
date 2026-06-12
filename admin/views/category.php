@@ -104,7 +104,7 @@ $studentsPage = array_slice($sortedStudents, $offset, $perPage);
                     echo '<td class="py-3 px-4 font-semibold">' . $category['id'] . '</td>';
                     echo '<td class="py-3 px-4">' . $category['name'] . '</td>';
                     echo '<td class="py-3 px-4">' . $category['description'] . '</td>';
-                    echo '<td class="py-3 px-4">' . $category['created_by'] . '</td>';
+                    echo '<td class="py-3 px-4">' . $category['fullname'] . '</td>';
                     echo '<td class="py-3 px-4">' . ($category['created_at'] ?? '') . '</td>';
                     echo '<td class="py-3 px-4">';
 
