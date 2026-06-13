@@ -388,7 +388,7 @@ function updateProduct(productId, categoryId) {
   document.getElementById("updateProductDescription").value = description;
   document.getElementById("updateProductPrice").value = price;
   document.getElementById("updateProductStock").value = stock;
-  document.getElementById("updateCategoryId").value = categoryId;
+  document.getElementById("updateProductCategoryId").value = categoryId;
 
   // Get image src from img element in cell 6
   const imageCell = cells[5];
@@ -581,6 +581,7 @@ function viewCategory(categoryId) {
 }
 
 function updateCategory(categoryId) {
+  console.log("🚀 ~ updateCategory ~ categoryId:", categoryId);
   // Get product data from table row
   const row = document.querySelector(`tr[data-category-id="${categoryId}"]`);
   if (!row) return;
@@ -588,7 +589,6 @@ function updateCategory(categoryId) {
   const cells = row.querySelectorAll("td");
   const name = cells[1].textContent;
   const description = cells[2].textContent;
-
   // Populate update modal with table data
   document.getElementById("updateCategoryId").value = categoryId;
   document.getElementById("updateCategoryName").value = name;

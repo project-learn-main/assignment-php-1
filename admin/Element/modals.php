@@ -135,7 +135,7 @@
                 <div class="mb-4">
                     <label for="categoryId" class="block text-gray-300 font-medium mb-2">Category</label>
                     <select
-                        id="updateCategoryId"
+                        id="updateProductCategoryId"
                         name="categoryId"
                         required
                         class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
@@ -149,22 +149,24 @@
                     </select>
                 </div>
 
-                <div class="mb-4">
-                    <label for="updateProductPrice" class="block text-gray-300 font-medium mb-2">Price</label>
-                    <input type="number" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="updateProductPrice" name="price" required>
-                </div>
+                <div class="flex gap-4 ">
+                    <div class="mb-4">
+                        <label for="updateProductPrice" class="block text-gray-300 font-medium mb-2">Price</label>
+                        <input type="number" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            id="updateProductPrice" name="price" required>
+                    </div>
 
-                <div class="mb-4">
-                    <label for="updateProductStock" class="block text-gray-300 font-medium mb-2">Stock</label>
-                    <input type="number" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="updateProductStock" name="stock" required>
+                    <div class="mb-4">
+                        <label for="updateProductStock" class="block text-gray-300 font-medium mb-2">Stock</label>
+                        <input type="number" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            id="updateProductStock" name="stock" required>
+                    </div>
                 </div>
 
                 <div class="mb-4">
                     <label for="updateProductDescription" class="block text-gray-300 font-medium mb-2">Description</label>
                     <input type="text" class="w-full px-4 py-2 bg-gray-900 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        id="updateProductDescription" name="description" required>
+                        id="updateProductDescription" name="description">
                 </div>
                 <div class="mb-4">
                     <label for="updateProductPersonalImage" class="block text-gray-300 font-medium mb-2">Product Image</label>
@@ -525,7 +527,7 @@
             </button>
         </div>
         <form method="POST" action="index.php?tab=category&action=update" enctype="multipart/form-data">
-            <input type="text" id="updateCategoryId" name="id">
+            <input type="hidden" id="updateCategoryId" name="id" />
             <div class="p-4">
                 <div class="mb-4">
                     <label for="updateCategoryName" class="block text-gray-300 font-medium mb-2">Name</label>
@@ -542,9 +544,8 @@
                 <button type="button" class="px-4 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors" onclick="closeModal('updateCategoryModal')">Cancel</button>
                 <button type="submit" class="px-4 py-2 bg-primary text-white rounded-lg hover:opacity-80 transition-colors">Update Category</button>
             </div>
+        </form>
     </div>
-    </form>
-</div>
 </div>
 
 <!-- Delete Category Modal -->
