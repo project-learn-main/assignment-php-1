@@ -1,8 +1,8 @@
 <?php
 include('views/header.php');
-if(isset($_GET['page'])) {
+if (isset($_GET['page'])) {
     // include 'views/' . $_GET['page'] . '.php';
-    switch($_GET['page']) {
+    switch ($_GET['page']) {
         case 'home':
             include('controllers/homeController.php');
             $controller = new HomeController();
@@ -58,4 +58,3 @@ if(isset($_GET['page'])) {
     $controller->Render();
 }
 include('views/footer.php');
-?>

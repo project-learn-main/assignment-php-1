@@ -14,6 +14,16 @@ function getAllUser()
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
+function login($email, $password)
+{
+    global $db;
+    $conn = $db->getConnection();
+    $query = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
+    $result = mysqli_query($conn, $query);
+
+    return mysqli_fetch_assoc($result);
+}
+
 function getUserByEmail($email)
 {
     var_dump("🚀 ~ getUserByEmail ~ $email:", $email);
