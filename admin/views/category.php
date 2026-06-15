@@ -1,33 +1,3 @@
-<?php
-
-include_once __DIR__ . '../../data/students.php';
-
-// Simple pagination
-$currentPage = 1; // Default to page 1
-
-// Only read page parameter if this tab is active
-$activeTab = isset($_GET['tab']) ? $_GET['tab'] : (isset($_SESSION['active_tab']) ? $_SESSION['active_tab'] : 'students');
-if ($activeTab === 'students' && isset($_GET['page'])) {
-    $currentPage = (int)$_GET['page'];
-}
-$perPage = 5;
-
-// Sort students by ID descending (handle both numeric and string IDs)
-$sortedStudents = $_SESSION['students'];
-usort($sortedStudents, function ($a, $b) {
-    // Convert IDs to numeric for comparison
-    $idA = is_numeric($a['id']) ? $a['id'] : (int)preg_replace('/[^0-9]/', '', $a['id']);
-    $idB = is_numeric($b['id']) ? $b['id'] : (int)preg_replace('/[^0-9]/', '', $b['id']);
-    return $idB - $idA;
-});
-
-$total = count($sortedStudents);
-$totalPages = ceil($total / $perPage);
-$page = max(1, min($currentPage, $totalPages));
-$offset = ($currentPage - 1) * $perPage;
-$studentsPage = array_slice($sortedStudents, $offset, $perPage);
-?>
-
 <!-- Header -->
 <div class="h-full w-full">
     <div class="bg-gray-800 px-6 py-8">
@@ -96,7 +66,6 @@ $studentsPage = array_slice($sortedStudents, $offset, $perPage);
             </thead>
             <tbody>
                 <?php
-                $students = $_SESSION['students'];
                 $rowCount = 0;
                 foreach ($data as $category) {
                     $rowCount++;
@@ -138,8 +107,8 @@ $studentsPage = array_slice($sortedStudents, $offset, $perPage);
     </div>
 
     <!-- Pagination -->
-    <?php if ($totalPages > 1): ?>
-        <div class="px-6 py-4 bg-gray-800 border-t border-gray-700">
+    <?php //if ($totalPages > 1): ?>
+        <!-- <div class="px-6 py-4 bg-gray-800 border-t border-gray-700">
             <div class="flex justify-between items-center">
                 <div class="text-sm text-gray-400">
                     Hiển thị <?php echo ($offset + 1); ?> - <?php echo min($offset + $perPage, $total); ?> của <?php echo $total; ?> sinh viên
@@ -166,7 +135,7 @@ $studentsPage = array_slice($sortedStudents, $offset, $perPage);
                     <?php endif; ?>
                 </div>
             </div>
-        </div>
-    <?php endif; ?>
+        </div> -->
+    <?php //endif; ?>
 </div>
 <?php include 'Element/modals.php'; ?>

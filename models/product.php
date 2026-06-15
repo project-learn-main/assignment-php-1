@@ -121,3 +121,18 @@ function addProduct($name, $price, $stock, $image, $categoryId, $description, $c
 
     return $result;
 }
+
+function getAllProductByPage($page, $perPage) {
+    global $db;
+    $conn = $db->getConnection();
+
+    $offset = ($page - 1) * $perPage;
+
+    $query = "SELECT * FROM products LIMIT $perPage OFFSET $offset";
+
+    $result = mysqli_query($conn, $query);
+
+    return $result;
+}
+
+

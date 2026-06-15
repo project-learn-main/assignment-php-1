@@ -1,30 +1,4 @@
-<?php
-// if (session_status() === PHP_SESSION_NONE) {
-//     session_start();
-// }
-include_once __DIR__ . '../../data/orders.php';
-if (!isset($_SESSION['orders'])) {
-    $_SESSION['orders'] = $dataOrders;
-}
-foreach ($_SESSION['orders'] as &$order) {
-    $order['total'] = $order['unitPrice'] * $order['quantity'];
-}
-unset($order);
 
-// Simple pagination
-$currentPage = 1; // Default to page 1
-// Only read page parameter if this tab is active
-$activeTab = isset($_GET['tab']) ? $_GET['tab'] : (isset($_SESSION['active_tab']) ? $_SESSION['active_tab'] : 'order');
-if ($activeTab === 'order' && isset($_GET['page'])) {
-    $currentPage = (int)$_GET['page'];
-}
-$perPage = 5;
-$total = count($_SESSION['orders']);
-$totalPages = ceil($total / $perPage);
-$page = max(1, min($currentPage, $totalPages));
-$offset = ($currentPage - 1) * $perPage;
-$ordersPage = array_slice($_SESSION['orders'], $offset, $perPage);
-?>
 <!-- Header -->
 <div class="h-full w-full">
     <div class="bg-gray-800 px-6 py-8">
@@ -87,15 +61,14 @@ $ordersPage = array_slice($_SESSION['orders'], $offset, $perPage);
             </thead>
             <tbody>
                 <?php
-                $dataOrders = $_SESSION['orders'];
                 $rowCount = 0;
 
-                foreach ($ordersPage as $order) {
+                foreach ($data as $order) {
                     $rowCount++;
-                    echo '<tr class="border-b border-gray-800 hover:bg-gray-800 transition-colors" data-order-id="' . $order['orderId'] . '">';
-                    echo '<td class="py-3 px-6 font-semibold">' . $order['orderId'] . '</td>';
-                    echo '<td class="py-3 px-6">' . $order['customer'] . '</td>';
-                    echo '<td class="py-3 px-6">' . $order['orderDate'] . '</td>';
+                    echo '<tr class="border-b border-gray-800 hover:bg-gray-800 transition-colors" data-order-id="' . $order['id'] . '">';
+                    echo '<td class="py-3 px-6 font-semibold">' . $order['id'] . '</td>';
+                    echo '<td class="py-3 px-6">' . $order['fullname'] . '</td>';
+                    echo '<td class="py-3 px-6">' . $order['order_date'] . '</td>';
                     echo '<td class="py-3 px-6 font-semibold">$' . number_format($order['unitPrice'], 2) . '</td>';
                     echo '<td class="py-3 px-6 text-center">' . $order['quantity'] . '</td>';
                     echo '<td class="py-3 px-6 text-center">$' . number_format($order['unitPrice'] * $order['quantity'], 2) . '</td>';
@@ -127,26 +100,26 @@ $ordersPage = array_slice($_SESSION['orders'], $offset, $perPage);
                 }
 
                 // Add empty rows to always show 5 rows
-                for ($i = $rowCount; $i < 5; $i++) {
-                    echo '<tr class="border-b border-gray-800">';
-                    echo '<td class="py-3 px-6 font-semibold">&nbsp;</td>';
-                    echo '<td class="py-3 px-6">&nbsp;</td>';
-                    echo '<td class="py-3 px-6">&nbsp;</td>';
-                    echo '<td class="py-3 px-6 font-semibold">&nbsp;</td>';
-                    echo '<td class="py-3 px-6 text-center">&nbsp;</td>';
-                    echo '<td class="py-3 px-6 text-center">&nbsp;</td>';
-                    echo '<td class="py-3 px-4">&nbsp;</td>';
-                    echo '<td class="py-3 px-6">&nbsp;</td>';
-                    echo '</tr>';
-                }
+                // for ($i = $rowCount; $i < 5; $i++) {
+                //     echo '<tr class="border-b border-gray-800">';
+                //     echo '<td class="py-3 px-6 font-semibold">&nbsp;</td>';
+                //     echo '<td class="py-3 px-6">&nbsp;</td>';
+                //     echo '<td class="py-3 px-6">&nbsp;</td>';
+                //     echo '<td class="py-3 px-6 font-semibold">&nbsp;</td>';
+                //     echo '<td class="py-3 px-6 text-center">&nbsp;</td>';
+                //     echo '<td class="py-3 px-6 text-center">&nbsp;</td>';
+                //     echo '<td class="py-3 px-4">&nbsp;</td>';
+                //     echo '<td class="py-3 px-6">&nbsp;</td>';
+                //     echo '</tr>';
+                // }
                 ?>
             </tbody>
         </table>
     </div>
 
     <!-- Pagination -->
-    <?php if ($totalPages > 1): ?>
-        <div class="px-6 py-4 bg-gray-800 border-t border-gray-700">
+    <?php //if ($totalPages > 1): ?>
+        <!-- <div class="px-6 py-4 bg-gray-800 border-t border-gray-700">
             <div class="flex justify-between items-center">
                 <div class="text-sm text-gray-400">
                     Hiển thị <?php echo ($offset + 1); ?> - <?php echo min($offset + $perPage, $total); ?> của <?php echo $total; ?> đơn hàng
@@ -173,6 +146,6 @@ $ordersPage = array_slice($_SESSION['orders'], $offset, $perPage);
                     <?php endif; ?>
                 </div>
             </div>
-        </div>
-    <?php endif; ?>
+        </div> -->
+    <?php //endif; ?>
 </div>

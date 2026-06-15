@@ -20,3 +20,24 @@ function createOrder($userId, $fullname, $phone, $address, $total)
 
     return mysqli_insert_id($conn);
 }
+
+function getAllOrders()
+{
+    global $db;
+    $conn = $db->getConnection();
+
+    $sql = "
+        SELECT
+            orders.*,
+            users.fullname,
+            users.email
+        FROM orders
+        JOIN users
+            ON orders.user_id = users.id
+        ORDER BY orders.order_date DESC
+    ";
+
+    $result = mysqli_query($conn, $sql);
+
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
