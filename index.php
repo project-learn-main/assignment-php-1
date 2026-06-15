@@ -55,7 +55,13 @@ if (isset($_GET['page'])) {
         case 'checkout':
             include('controllers/checkoutController.php');
             $controller = new CheckoutController();
-            $controller->Render();
+
+            if (isset($_GET['action']) && $_GET['action'] == 'placeOrder') {
+                $controller->PlaceOrder();
+            } else {
+                $controller->Render();
+            }
+
             break;
     }
 } else {

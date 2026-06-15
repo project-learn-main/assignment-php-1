@@ -1,81 +1,16 @@
-```php
-<div class="max-w-5xl mx-auto py-10 px-4">
+<div class="max-w-5xl mx-auto px-4 py-10">
 
-    <h1 class="text-3xl font-bold mb-8">
+    <h1 class="text-3xl font-bold mb-8" style="color: var(--primary);">
         Thanh toán
     </h1>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-        <!-- Thông tin giao hàng -->
-        <div class="border rounded-lg p-6">
+        <!-- Danh sách sản phẩm -->
+        <div class="lg:col-span-2 bg-white rounded-lg border p-6">
 
-            <h2 class="text-xl font-bold mb-4">
-                Thông tin giao hàng
-            </h2>
-
-            <form action="?page=checkout&action=placeOrder" method="POST">
-
-                <div class="mb-4">
-                    <label>Họ và tên</label>
-                    <input
-                        type="text"
-                        name="fullname"
-                        class="w-full border rounded p-2"
-                        required>
-                </div>
-
-                <div class="mb-4">
-                    <label>Số điện thoại</label>
-                    <input
-                        type="text"
-                        name="phone"
-                        class="w-full border rounded p-2"
-                        required>
-                </div>
-
-                <div class="mb-4">
-                    <label>Địa chỉ giao hàng</label>
-                    <textarea
-                        name="address"
-                        class="w-full border rounded p-2"
-                        rows="3"
-                        required></textarea>
-                </div>
-
-                <div class="mb-4">
-                    <label>Phương thức thanh toán</label>
-
-                    <select
-                        name="payment_method"
-                        class="w-full border rounded p-2">
-
-                        <option value="COD">
-                            Thanh toán khi nhận hàng (COD)
-                        </option>
-
-                        <option value="BANK">
-                            Chuyển khoản
-                        </option>
-
-                    </select>
-                </div>
-
-                <button
-                    type="submit"
-                    class="w-full bg-green-600 text-white py-3 rounded">
-                    Đặt hàng
-                </button>
-
-            </form>
-
-        </div>
-
-        <!-- Tóm tắt đơn hàng -->
-        <div class="border rounded-lg p-6">
-
-            <h2 class="text-xl font-bold mb-4">
-                Đơn hàng của bạn
+            <h2 class="text-xl font-bold mb-6" style="color: var(--primary);">
+                Sản phẩm trong đơn hàng
             </h2>
 
             <?php
@@ -83,40 +18,104 @@
 
             if (!empty($items)):
                 foreach ($items as $item):
+
                     $subtotal = $item['price'] * $item['quantity'];
                     $total += $subtotal;
             ?>
 
-                <div class="flex justify-between mb-3">
-                    <span>
-                        <?= htmlspecialchars($item['name']) ?>
-                        x <?= $item['quantity'] ?>
-                    </span>
+                    <div class="flex justify-between items-center py-4 border-b">
 
-                    <span>
-                        <?= number_format($subtotal, 0, ',', '.') ?>₫
-                    </span>
-                </div>
+                        <div class="flex items-center gap-4">
+
+                            <img
+                                src="<?= $item['image'] ?>"
+                                alt="<?= htmlspecialchars($item['name']) ?>"
+                                class="w-20 h-20 object-cover rounded">
+
+                            <div>
+                                <h3 class="font-bold">
+                                    <?= htmlspecialchars($item['name']) ?>
+                                </h3>
+
+                                <p class="text-gray-500">
+                                    Số lượng: <?= $item['quantity'] ?>
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="font-bold">
+                            <?= number_format($subtotal, 0, ',', '.') ?> ₫
+                        </div>
+
+                    </div>
 
             <?php
                 endforeach;
-            endif;
+            else:
             ?>
 
-            <hr class="my-4">
+                <p>Không có sản phẩm.</p>
 
-            <div class="flex justify-between text-xl font-bold">
-                <span>Tổng cộng</span>
+            <?php endif; ?>
 
-                <span>
-                    <?= number_format($total, 0, ',', '.') ?>₫
+        </div>
+
+        <!-- Tóm tắt -->
+        <div class="bg-white rounded-lg border p-6 h-fit">
+
+            <h2 class="text-xl font-bold mb-6" style="color: var(--primary);">
+                Tóm tắt đơn hàng
+            </h2>
+
+            <div class="flex justify-between mb-4">
+                <span>Tạm tính</span>
+
+                <span class="font-bold">
+                    <?= number_format($total, 0, ',', '.') ?> ₫
                 </span>
             </div>
 
+            <div class="flex justify-between mb-4">
+                <span>Phí vận chuyển</span>
+
+                <span class="text-green-600">
+                    Miễn phí
+                </span>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="flex justify-between text-xl font-bold mb-6">
+
+                <span>Tổng cộng</span>
+
+                <span style="color: var(--accent);">
+                    <?= number_format($total, 0, ',', '.') ?> ₫
+                </span>
+
+            </div>
+
+            <form action="?page=checkout&action=placeOrder" method="POST">
+
+                <button
+                    type="submit"
+                    class="w-full py-3 rounded text-white"
+                    style="background-color: var(--primary);">
+
+                    Xác nhận thanh toán
+
+                </button>
+
+            </form>
+
             <a
                 href="?page=cart"
-                class="block text-center mt-6 border rounded py-2">
-                Quay lại giỏ hàng
+                class="block text-center mt-4 py-3 border rounded no-underline"
+                style="color: var(--primary);">
+
+                ← Quay lại giỏ hàng
+
             </a>
 
         </div>
@@ -124,4 +123,3 @@
     </div>
 
 </div>
-```

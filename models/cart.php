@@ -32,13 +32,11 @@ function getCartItems($userId)
     $sql = "
         SELECT
             cart_items.id,
-            cart_items.cart_id,
             cart_items.product_id,
-            cart_items.quantity,
             products.name,
             products.image,
             products.price,
-            products.price * cart_items.quantity AS subtotal
+            cart_items.quantity
         FROM carts
         JOIN cart_items
             ON carts.id = cart_items.cart_id

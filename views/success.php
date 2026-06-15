@@ -74,7 +74,7 @@
 
             <!-- Buttons -->
             <div class="flex flex-col gap-4">
-                <a href="?page=products" class="py-4 text-lg font-bold rounded no-underline transition-all duration-300 text-center" style="background-color: var(--primary);">
+                <a href="?page=products" class="py-4 text-white text-lg font-bold rounded no-underline transition-all duration-300 text-center" style="background-color: var(--primary);">
                     Tiếp Tục Mua Sắm
                 </a>
                 <a href="?page=home" class="py-4 text-lg font-bold rounded border no-underline transition-all duration-300 text-center" style="border-color: var(--border-light); color: var(--primary);">

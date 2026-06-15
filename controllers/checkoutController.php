@@ -1,47 +1,62 @@
 <?php
-class CheckoutController {
-    public function Render() {
-        include('views/checkout.php');
-    }
-    public function PlaceOrder()
+include_once "models/checkout.php";
+
+class CheckoutController
 {
-    $userId = $_SESSION['userId'];
+    public function Render()
+    {
+        if (!isset($_SESSION['userId'])) {
+            header("Location: ?page=login");
+            exit();
+        }
 
-    $fullname = $_POST['fullname'];
-    $phone = $_POST['phone'];
-    $address = $_POST['address'];
+        $userId = $_SESSION['userId'];
+        $items = getCartItems($userId);
 
-    $items = getCartItems($userId);
-
-    $total = 0;
-
-    foreach ($items as $item) {
-        $total += $item['price'] * $item['quantity'];
+        include "views/checkout.php";
     }
 
-    // tạo order
-    $orderId = createOrder(
-        $userId,
-        $fullname,
-        $phone,
-        $address,
-        $total
-    );
+    public function PlaceOrder()
+    {
+        if (!isset($_SESSION['userId'])) {
+            header("Location: ?page=login");
+            exit();
+        }
 
-    // lưu từng sản phẩm
-    foreach ($items as $item) {
-        createOrderDetail(
-            $orderId,
-            $item['product_id'],
-            $item['quantity'],
-            $item['price']
-        );
+        $userId = $_SESSION['userId'];
+
+        // Lấy sản phẩm trong giỏ
+        $items = getCartItems($userId);
+
+        if (empty($items)) {
+            header("Location: ?page=cart");
+            exit();
+        }
+
+        // Tính tổng tiền
+        $total = 0;
+        foreach ($items as $item) {
+            $total += $item['price'] * $item['quantity'];
+        }
+
+        // Tạo đơn hàng
+        $orderId = createOrder($userId, $total);
+
+        // Lưu chi tiết đơn hàng
+        foreach ($items as $item) {
+            createOrderDetail(
+                $orderId,
+                $item['product_id'],
+                $item['quantity'],
+                $item['price']
+            );
+        }
+
+        // Xóa giỏ hàng
+        clearCart($userId);
+
+        header("Location: ?page=success");
+        exit();
     }
-
-    // xóa giỏ hàng
-    clearCart($userId);
-
-    header("Location: ?page=success");
-}
 }
 ?>
