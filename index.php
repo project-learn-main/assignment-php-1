@@ -34,7 +34,13 @@ if (isset($_GET['page'])) {
         case 'cart':
             include('controllers/cartController.php');
             $controller = new CartController();
-            $controller->Render();
+
+            if (isset($_GET['action']) && $_GET['action'] == 'add') {
+                $controller->Add();
+            } else {
+                $controller->Render();
+            }
+
             break;
         case 'success':
             include('controllers/successController.php');

@@ -62,6 +62,12 @@
   </script>
 <?php endif; ?>
 
+<?php if (isset($_COOKIE['add_to_cart_success'])): ?>
+  <script>
+    showToast('Thêm vào giỏ hàng thành công!', 'success');
+    document.cookie = 'add_to_cart_success=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  </script>
+<?php endif; ?>
 
 </body>
 

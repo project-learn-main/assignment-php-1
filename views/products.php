@@ -76,11 +76,9 @@
                                     <?= $product['name'] ?>
                                 </h3>
 
-
                                 <p class="text-gray-500 text-sm h-10 overflow-hidden">
                                     <?= $product['description'] ?>
                                 </p>
-
 
                                 <div class="mt-4 flex justify-between items-center">
 
@@ -94,7 +92,7 @@
                                         class="px-4 py-2 text-white rounded-lg text-sm hover:opacity-90 transition"
                                         style="background-color: var(--primary);">
 
-                                        🛒 Mua
+                                        Xem chi tiết
                                     </button>
 
                                 </div>

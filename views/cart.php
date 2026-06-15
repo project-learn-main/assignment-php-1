@@ -1,62 +1,143 @@
- <div class="max-w-6xl mx-auto px-4 py-4">
-     <p class="text-gray-500">
-         <a href="../index.html" class="no-underline" style="color: var(--accent);">Trang chủ</a>
-         <span class="text-gray-500"> / </span>
-         <span style="color: var(--primary);">Giỏ Hàng</span>
-     </p>
- </div>
- <section class="py-12">
-     <div class="max-w-6xl mx-auto px-4">
-         <h1 class="text-4xl font-bold mb-12" style="color: var(--primary);">Giỏ Hàng Của Bạn</h1>
+<div class="container mx-auto py-10">
 
-         <div id="emptyCart" class="text-center py-20">
-             <div style="font-size: 80px; margin-bottom: 16px;">🛒</div>
-             <h2 class="text-2xl font-bold mb-4" style="color: var(--primary);">Giỏ hàng trống</h2>
-             <p class="text-lg mb-8 text-gray-600">Hãy thêm một số sản phẩm để bắt đầu mua sắm</p>
-             <a href="?page=products" class="inline-block px-6 py-3 text-white rounded no-underline transition-all duration-300" style="background-color: var(--primary);">
-                 Tiếp Tục Mua Sắm →
-             </a>
-         </div>
+    <h1 class="text-3xl font-bold mb-8">🛒 Giỏ hàng</h1>
+    <?php if (empty($items)) : ?>
 
-         <div id="cartContent" style="display: none;">
-             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                 <!-- Cart Items -->
-                 <div class="lg:col-span-2">
-                     <div id="cartItems"></div>
-                 </div>
+        <!-- Giỏ hàng trống -->
+        <div class="text-center py-20">
 
-                 <!-- Cart Summary -->
-                 <div class="bg-white rounded-lg p-8 border" style="border-color: var(--border-light); height: fit-content;">
-                     <h2 class="text-2xl font-bold mb-6" style="color: var(--primary);">Tóm Tắt Đơn Hàng</h2>
+            <div style="font-size:80px;">🛒</div>
 
-                     <div class="mb-6 pb-6" style="border-bottom: 1px solid var(--border-light);">
-                         <div class="flex justify-between mb-4">
-                             <span class="text-gray-600">Tạm tính:</span>
-                             <span id="subtotal" class="font-bold" style="color: var(--primary);">0₫</span>
-                         </div>
-                         <div class="flex justify-between mb-4">
-                             <span class="text-gray-600">Vận chuyển:</span>
-                             <span id="shipping" class="font-bold text-green-600">Miễn phí</span>
-                         </div>
-                         <div class="flex justify-between mb-4">
-                             <span class="text-gray-600">Thuế:</span>
-                             <span id="tax" class="font-bold" style="color: var(--primary);">0₫</span>
-                         </div>
-                     </div>
+            <h2 class="text-2xl font-bold mt-4 mb-3">
+                Giỏ hàng trống
+            </h2>
 
-                     <div class="flex justify-between mb-8">
-                         <span class="text-lg font-bold" style="color: var(--primary);">Tổng cộng:</span>
-                         <span id="total" class="text-2xl font-bold" style="color: var(--accent);">0₫</span>
-                     </div>
+            <p class="mb-6">
+                Hãy thêm một số sản phẩm để bắt đầu mua sắm.
+            </p>
 
-                     <button onclick="proceedToCheckout()" class="w-full py-4 text-lg text-white rounded transition-all duration-300 mb-4" style="background-color: var(--primary);">
-                         Tiếp Tục Thanh Toán
-                     </button>
-                     <a href="?page=products" class="block w-full py-4 text-center rounded border no-underline transition-all duration-300" style="border-color: var(--border-light); color: var(--primary);">
-                         Tiếp Tục Mua Sắm
-                     </a>
-                 </div>
-             </div>
-         </div>
-     </div>
- </section>
+            <a href="?page=products"
+                class="px-5 py-3 rounded text-white"
+                style="background:#2d6a4f;">
+                Tiếp tục mua sắm
+            </a>
+        </div>
+
+    <?php else : ?>
+
+        <?php
+        $subtotal = 0;
+
+        foreach ($items as $item) {
+            $subtotal += $item['price'] * $item['quantity'];
+        }
+
+        $tax = 0;
+        $shipping = 0;
+        $total = $subtotal + $tax + $shipping;
+        ?>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- Danh sách sản phẩm -->
+            <div class="lg:col-span-2">
+
+                <?php foreach ($items as $item) : ?>
+
+                    <div class="border rounded p-4 mb-4 flex gap-4">
+
+                        <div>
+                            <img
+                                src="<?= htmlspecialchars($item['image']) ?>"
+                                alt="<?= htmlspecialchars($item['name']) ?>"
+                                style="width:120px;height:120px;object-fit:cover;">
+                        </div>
+
+                        <div class="flex-1">
+
+                            <h3 class="text-xl font-bold">
+                                <?= htmlspecialchars($item['name']) ?>
+                            </h3>
+
+                            <p class="mt-2">
+                                Giá:
+                                <strong>
+                                    <?= number_format($item['price'], 0, ',', '.') ?>₫
+                                </strong>
+                            </p>
+
+                            <p>
+                                Số lượng:
+                                <?= (int)$item['quantity'] ?>
+                            </p>
+
+                            <p class="mt-2">
+                                Thành tiền:
+                                <strong>
+                                    <?= number_format($item['price'] * $item['quantity'], 0, ',', '.') ?>₫
+                                </strong>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                <?php endforeach; ?>
+
+            </div>
+
+            <!-- Tóm tắt -->
+            <div class="border rounded p-6 h-fit">
+
+                <h2 class="text-2xl font-bold mb-6">
+                    Tóm tắt đơn hàng
+                </h2>
+
+                <div class="flex justify-between mb-3">
+                    <span>Tạm tính</span>
+                    <strong>
+                        <?= number_format($subtotal, 0, ',', '.') ?>₫
+                    </strong>
+                </div>
+
+                <div class="flex justify-between mb-3">
+                    <span>Vận chuyển</span>
+                    <strong>Miễn phí</strong>
+                </div>
+
+                <div class="flex justify-between mb-3">
+                    <span>Thuế</span>
+                    <strong>
+                        <?= number_format($tax, 0, ',', '.') ?>₫
+                    </strong>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="flex justify-between text-xl font-bold mb-6">
+                    <span>Tổng cộng</span>
+                    <span>
+                        <?= number_format($total, 0, ',', '.') ?>₫
+                    </span>
+                </div>
+
+                <a
+                    href="?page=checkout"
+                    class="block w-full text-center text-white py-3 rounded mb-3"
+                    style="background:#2d6a4f;">
+                    Thanh toán
+                </a>
+
+                <a
+                    href="?page=products"
+                    class="block w-full text-center py-3 rounded border">
+                    Tiếp tục mua sắm
+                </a>
+
+            </div>
+
+        </div>
+
+    <?php endif; ?>
+
+</div>

@@ -12,6 +12,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         $user = mysqli_fetch_assoc($result);
         $_SESSION['fullname'] = $user['fullname'];
         $_SESSION['role'] = $user['role'];
+        $_SESSION['userId'] = $user['id'];
         setcookie('login_success', 'true', time() + 10, "/");
         header('location: ../index.php?page=home');
     } else {
