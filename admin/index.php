@@ -48,9 +48,9 @@ if ($tab == 'product') {
     }
 }
 
-// Từ đây mới bắt đầu hiển thị giao diện
 include('views/header.php');
 
+// Từ đây mới bắt đầu hiển thị giao diện
 switch ($tab) {
     case 'dashboard':
         include('controllers/dashboardController.php');
@@ -73,7 +73,13 @@ switch ($tab) {
 
     case 'order':
         include('controllers/orderController.php');
-        (new OrderController())->Render();
+        $controller = new OrderController();
+
+        if ($_GET['tab'] == 'order' && isset($_GET['action']) && $_GET['action'] == 'updateStatus') {
+            $controller->updateStatus();
+        } else {
+            $controller->Render();
+        }
         break;
 
     case 'user':
@@ -81,5 +87,7 @@ switch ($tab) {
         (new UserController())->Render();
         break;
 }
+
+
 
 include('views/footer.php');

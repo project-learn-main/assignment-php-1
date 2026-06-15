@@ -41,3 +41,19 @@ function getAllOrders()
 
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
+
+function updateOrderStatus($orderId, $status)
+{
+    global $db;
+    $conn = $db->getConnection();
+
+    $status = mysqli_real_escape_string($conn, $status);
+
+    $sql = "
+        UPDATE orders
+        SET status = '$status'
+        WHERE id = $orderId
+    ";
+
+    return mysqli_query($conn, $sql);
+}
