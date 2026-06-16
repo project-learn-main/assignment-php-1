@@ -103,17 +103,17 @@
                 <?= $product['description'] ?>
               </p>
 
-              <div class="flex justify-between items-center">
+              <div class="flex gap-2 justify-between items-center">
                 <span class="font-bold" style="color: var(--accent)">
                   <?= number_format($product['price']) ?>₫
                 </span>
 
-                <button
-                  onclick="addToCartFromHome(<?= $product['id'] ?>)"
+                <a
+                  href="?page=product-detail&&id=<?= $product['id'] ?>"
                   class="px-4 py-2 text-white rounded text-sm transition-all duration-300"
                   style="background-color: var(--primary); font-size: 12px">
-                  Thêm
-                </button>
+                  Xem chi tiết
+                </a>
               </div>
 
             </div>

@@ -109,6 +109,22 @@
 <?php endif;
 ?>
 
+<?php if (isset($_COOKIE['order_update_success'])): ?>
+   <script>
+      showToast('Update Status Order Successfully !', 'success');
+      document.cookie = 'order_update_success=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+   </script>
+<?php endif;
+?>
+
+<?php if (isset($_COOKIE['order_update_error'])): ?>
+   <script>
+      showToast('Update Status Order error', 'error');
+      document.cookie = 'order_update_error=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+   </script>
+<?php endif;
+?>
+
 </body>
 
 </html>

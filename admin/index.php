@@ -48,6 +48,16 @@ if ($tab == 'product') {
     }
 }
 
+if ($tab == 'order') {
+    include_once('controllers/orderController.php');
+    $controller = new OrderController();
+
+    if ($action == 'updateStatus') {
+        $controller->updateStatus();
+        exit();
+    }
+}
+
 include('views/header.php');
 
 // Từ đây mới bắt đầu hiển thị giao diện
@@ -72,14 +82,8 @@ switch ($tab) {
         break;
 
     case 'order':
-        include('controllers/orderController.php');
-        $controller = new OrderController();
-
-        if ($_GET['tab'] == 'order' && isset($_GET['action']) && $_GET['action'] == 'updateStatus') {
-            $controller->updateStatus();
-        } else {
-            $controller->Render();
-        }
+        include_once('controllers/orderController.php');
+        (new OrderController())->Render();
         break;
 
     case 'user':

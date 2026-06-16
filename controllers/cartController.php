@@ -20,6 +20,10 @@ class CartController
     // Thêm sản phẩm vào giỏ
     public function Add()
     {
+        if (!isset($_SESSION['userId'])) {
+            header("Location: ?page=login");
+            exit();
+        }
         $userId = $_SESSION['userId'];
         $productId = $_POST['product_id'];
         $quantity = $_POST['quantity'];
@@ -52,4 +56,3 @@ class CartController
         exit();
     }
 }
-?>
