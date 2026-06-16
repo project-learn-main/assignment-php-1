@@ -78,7 +78,7 @@
         <?= $category ?>
       </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
 
         <?php foreach ($products as $product): ?>
           <div
@@ -89,7 +89,7 @@
               style="background-color: var(--light-bg);">
 
               <img
-                src="images/<?= $product['image'] ?>"
+                src="admin/images/<?= $product['image'] ?>"
                 alt="<?= $product['name'] ?>"
                 class="w-full h-full object-cover">
             </div>

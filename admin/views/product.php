@@ -85,7 +85,7 @@
                     echo date('d/m/Y', strtotime($product['created_at']));
                     echo '</td>';
                     echo '<td class="py-3 px-4 text-center">';
-          
+
                     echo '<button class="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded transition-colors" onclick="updateProduct(' . $product['id'] . ', ' . $product['category_id'] . ')">';
                     echo '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">';
                     echo '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>';
@@ -113,15 +113,17 @@
                 //     echo '<td class="py-3 px-4 text-center">&nbsp;</td>';
                 //     echo '</tr>';
                 // }
-                // ?>
+                // 
+                ?>
 
             </tbody>
         </table>
     </div>
 
     <!-- Pagination -->
-    <? //php if ($totalPages > 1): ?>
-        <!-- <div class="px-6 py-4 bg-gray-800 border-t border-gray-700">
+    <? //php if ($totalPages > 1): 
+    ?>
+    <!-- <div class="px-6 py-4 bg-gray-800 border-t border-gray-700">
             <div class="flex justify-between items-center">
                 <div class="text-sm text-gray-400">
                     Hiển thị <?php echo ($offset + 1); ?> - <?php echo min($offset + $perPage, $total); ?> của <?php echo $total; ?> khách hàng
@@ -149,7 +151,8 @@
                 </div>
             </div>
         </div> -->
-    <?php //endif; ?>
+    <?php //endif; 
+    ?>
 </div>
 
 <?php include 'Element/modals.php'; ?>

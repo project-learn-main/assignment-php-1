@@ -1,48 +1,103 @@
 <!-- View Order Details Modal -->
-<div id="viewOrderDetailsModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-    <div class="bg-gray-800 text-white rounded-xl max-w-md w-full mx-4">
+<div id="viewOrderDetailsModal"
+    class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+
+    <div class="bg-gray-800 text-white rounded-xl max-w-lg w-full mx-4 shadow-lg">
+
+        <!-- Header -->
         <div class="flex items-center justify-between p-4 border-b border-gray-700">
             <h5 class="text-lg font-semibold">Order Details</h5>
-            <button type="button" class="text-gray-400 hover:text-white transition-colors" onclick="closeModal('viewOrderDetailsModal')">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+
+            <button
+                type="button"
+                class="text-gray-400 hover:text-white transition-colors"
+                onclick="closeModal('viewOrderDetailsModal')">
+
+                <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12">
+                    </path>
                 </svg>
+
             </button>
         </div>
+
+
+        <!-- Body -->
         <div class="p-6">
+
             <!-- Order Information -->
             <div class="mb-6">
-                <h6 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Order Information</h6>
+
+                <h6 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">
+                    Order Information
+                </h6>
+
                 <div class="grid grid-cols-2 gap-4">
+
                     <div>
                         <p class="text-sm text-gray-400">Order ID</p>
                         <p class="text-white font-semibold" id="viewOrderId"></p>
                     </div>
+
+
                     <div>
                         <p class="text-sm text-gray-400">Customer</p>
                         <p class="text-white font-semibold" id="viewOrderCustomer"></p>
                     </div>
-                </div>
-            </div>
 
-            <!-- Order Items -->
+
+                    <div>
+                        <p class="text-sm text-gray-400">Order Date</p>
+                        <p class="text-white font-semibold" id="viewOrderDate"></p>
+                    </div>
+
+
+                    <div>
+                        <p class="text-sm text-gray-400">Status</p>
+                        <p class="text-white font-semibold" id="viewOrderStatus"></p>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- Products -->
             <div class="mb-6">
-                <h6 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Products</h6>
-                <div class="space-y-3" id="viewOrderItems">
-                    <!-- Items will be populated by JavaScript -->
+
+                <h6 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">
+                    Products
+                </h6>
+
+                <div id="viewOrderItems" class="space-y-3">
+                    <!-- JavaScript sẽ thêm sản phẩm ở đây -->
                 </div>
             </div>
-
-            <!-- Order Total
+            <!-- Total -->
             <div class="border-t border-gray-700 pt-4">
+
                 <div class="flex justify-between items-center">
-                    <span class="text-lg font-semibold text-white">Total:</span>
-                    <span class="text-xl font-bold text-primary" id="viewOrderTotal"></span>
+
+                    <span class="text-lg font-semibold">
+                        Total:
+                    </span>
+
+                    <span
+                        id="viewOrderTotal"
+                        class="text-xl font-bold text-green-400">
+                    </span>
+
                 </div>
-            </div> -->
+
+            </div>
+
         </div>
 
     </div>
+
 </div>
 
 <!-- Add Product Modal -->

@@ -186,38 +186,17 @@ function viewDetailOrder(orderId) {
 
   const cells = row.querySelectorAll("td");
 
-  const orderInfo = cells[0].textContent.trim();
+  const orderIdText = cells[0].textContent.trim();
   const customerName = cells[1].textContent.trim();
+  const total = cells[2].textContent.trim();
+  const date = cells[3].textContent.trim();
+  const status = cells[4].querySelector("select").value;
 
-  const unitPrice = Number(cells[3].textContent.replace("$", ""));
-  const quantity = Number(cells[4].textContent);
-
-  // document.getElementById("viewOrderId").textContent = orderInfo;
-  console.log(
-    `🚀 ~ viewDetailOrder ~ document.getElementById("viewOrderId"):`,
-    document.getElementById("viewOrderId"),
-  );
+  // document.getElementById("viewOrderId").textContent = orderId;
   document.getElementById("viewOrderCustomer").textContent = customerName;
-
-  const itemsContainer = document.getElementById("viewOrderItems");
-  itemsContainer.innerHTML = "";
-
-  const itemDiv = document.createElement("div");
-  itemDiv.className = "bg-gray-900 rounded-lg p-3 border border-gray-700";
-
-  itemDiv.innerHTML = `
-    <div class="flex justify-between items-start">
-      <div class="flex-1">
-        <p class="text-white font-medium">Product</p>
-        <p class="text-gray-400 text-sm">${quantity} x $${unitPrice.toFixed(2)}</p>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzSOrIHIncvVwcn86Yj1lG2no3rymRPhF1AQ&s"
-        class="w-20 h-20"
-        alt="img product" />
-         </div>
-    </div>
-  `;
-
-  itemsContainer.appendChild(itemDiv);
+  document.getElementById("viewOrderTotal").textContent = total;
+  document.getElementById("viewOrderDate").textContent = date;
+  document.getElementById("viewOrderStatus").textContent = status;
 
   openModal("viewOrderDetailsModal");
 }
