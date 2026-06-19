@@ -80,13 +80,22 @@
                 echo '<form method="POST" action="?tab=order&action=updateStatus" style="margin: 0;">';
                 echo '<input type="hidden" name="orderId" value="' . $order['id'] . '">';
                 echo '<select name="status" onchange="this.form.submit()" class="w-full px-2 py-1 bg-gray-700 border border-gray-600 text-white rounded text-sm">';
-                
-                echo '<option value="pending"' . ($status === 'pending' ? ' selected' : '') . '>Đang chờ</option>';
-                echo '<option value="processing"' . ($status === 'processing' ? ' selected' : '') . '>Đang xử lý</option>';
-                echo '<option value="shipping"' . ($status === 'shipping' ? ' selected' : '') . '>Đang giao hàng</option>';
-                echo '<option value="completed"' . ($status === 'completed' ? ' selected' : '') . '>Hoàn thành</option>';
-                echo '<option value="cancelled"' . ($status === 'cancelled' ? ' selected' : '') . '>Đã hủy</option>';
-                
+
+                $pendingDisabled = ($status !== 'pending') ? ' disabled' : '';
+                echo '<option value="pending"' . ($status === 'pending' ? ' selected' : '') . $pendingDisabled . '>Đang chờ</option>';
+
+                $processingDisabled = in_array($status, ['shipping', 'completed', 'cancelled']) ? ' disabled' : '';
+                echo '<option value="processing"' . ($status === 'processing' ? ' selected' : '') . $processingDisabled . '>Đang xử lý</option>';
+
+                $shippingDisabled = in_array($status, ['completed', 'cancelled']) ? ' disabled' : '';
+                echo '<option value="shipping"' . ($status === 'shipping' ? ' selected' : '') . $shippingDisabled . '>Đang giao hàng</option>';
+
+                $completedDisabled = ($status === 'cancelled') ? ' disabled' : '';
+                echo '<option value="completed"' . ($status === 'completed' ? ' selected' : '') . $completedDisabled . '>Hoàn thành</option>';
+
+                $cancelledDisabled = in_array($status, ['shipping', 'completed']) ? ' disabled' : '';
+                echo '<option value="cancelled"' . ($status === 'cancelled' ? ' selected' : '') . $cancelledDisabled . '>Đã hủy</option>';
+
                 echo '</select>';
                 echo '</form>';
                 echo '</td>';
