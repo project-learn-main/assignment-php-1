@@ -3,8 +3,7 @@
     class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
 
     <div class="bg-gray-800 text-white rounded-xl max-w-lg w-full mx-4 shadow-lg">
-
-        <!-- Header -->
+        
         <div class="flex items-center justify-between p-4 border-b border-gray-700">
             <h5 class="text-lg font-semibold">Order Details</h5>
 
@@ -12,92 +11,99 @@
                 type="button"
                 class="text-gray-400 hover:text-white transition-colors"
                 onclick="closeModal('viewOrderDetailsModal')">
-
-                <svg class="w-6 h-6" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M6 18L18 6M6 6l12 12">
-                    </path>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
-
             </button>
         </div>
 
-
-        <!-- Body -->
         <div class="p-6">
-
-            <!-- Order Information -->
             <div class="mb-6">
-
                 <h6 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">
                     Order Information
                 </h6>
 
                 <div class="grid grid-cols-2 gap-4">
-
                     <div>
                         <p class="text-sm text-gray-400">Order ID</p>
                         <p class="text-white font-semibold" id="viewOrderId"></p>
                     </div>
-
 
                     <div>
                         <p class="text-sm text-gray-400">Customer</p>
                         <p class="text-white font-semibold" id="viewOrderCustomer"></p>
                     </div>
 
-
                     <div>
                         <p class="text-sm text-gray-400">Order Date</p>
                         <p class="text-white font-semibold" id="viewOrderDate"></p>
                     </div>
 
-
                     <div>
                         <p class="text-sm text-gray-400">Status</p>
                         <p class="text-white font-semibold" id="viewOrderStatus"></p>
                     </div>
-
                 </div>
-
             </div>
-            <!-- Products -->
-            <div class="mb-6">
 
+            <div class="mb-6">
                 <h6 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">
                     Products
                 </h6>
 
-                <div id="viewOrderItems" class="space-y-3">
-                    <!-- JavaScript sẽ thêm sản phẩm ở đây -->
+                <div id="viewOrderItems" class="space-y-3 max-h-64 overflow-y-auto pr-1">
+                    <?php if (!empty($data) && is_array($data)): ?>
+                        <?php foreach ($data as $item): ?>
+                            <div class="flex items-center justify-between bg-gray-700 p-3 rounded-lg order-item-block" 
+                                 data-belongs-to-order="<?= $item['id'] ?>">
+                                
+                                <div class="flex items-center space-x-3">
+                                    <?php 
+                                        $imgUrl = !empty($item['product_image']) ? 'http://localhost/assignment-php-1/admin/images/' . $item['product_image'] : 'assets/images/default-product.png'; 
+                                    ?>
+                                    <img class="w-12 h-12 object-cover rounded-md border border-gray-600" 
+                                         src="<?= $imgUrl ?>" 
+                                         alt="<?= htmlspecialchars($item['product_name']) ?>">
+                                    <div>
+                                        <p class="text-sm font-medium text-white"><?= htmlspecialchars($item['product_name']) ?></p>
+                                        <p class="text-xs text-gray-400 mt-0.5">
+                                            Đơn giá: <span class="text-gray-300"><?= number_format($item['item_price'], 0, ',', '.') ?> ₫</span> 
+                                            <span class="mx-1">|</span> 
+                                            SL: <span class="text-gray-300">x<?= htmlspecialchars($item['item_quantity']) ?></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="text-right">
+                                    <?php 
+                                        $subTotal = $item['item_price'] * $item['item_quantity'];
+                                    ?>
+                                    <p class="text-sm font-semibold text-gray-200">
+                                        <?= number_format($subTotal, 0, ',', '.') ?> ₫
+                                    </p>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p class="text-sm text-gray-500 italic">No products available.</p>
+                    <?php endif; ?>
                 </div>
             </div>
-            <!-- Total -->
+
             <div class="border-t border-gray-700 pt-4">
-
                 <div class="flex justify-between items-center">
-
                     <span class="text-lg font-semibold">
                         Total:
                     </span>
-
                     <span
                         id="viewOrderTotal"
                         class="text-xl font-bold text-green-400">
                     </span>
-
                 </div>
-
             </div>
 
         </div>
-
     </div>
-
 </div>
 
 <!-- Add Product Modal -->

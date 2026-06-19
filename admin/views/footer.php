@@ -1,5 +1,3 @@
-<script src="assets/js/dashboard.js"></script>
-
 <?php if (isset($_COOKIE['login_success'])): ?>
    <script>
       showToast('Login Successfully !', 'success');
@@ -124,6 +122,7 @@
    </script>
 <?php endif;
 ?>
+<script src="assets/js/dashboard.js"></script>
 
 </body>
 

@@ -27,14 +27,22 @@ function getAllOrders()
     $conn = $db->getConnection();
 
     $sql = "
-        SELECT
-            orders.*,
-            users.fullname,
-            users.email
-        FROM orders
-        JOIN users
-            ON orders.user_id = users.id
-        ORDER BY orders.order_date DESC
+        SELECT 
+    orders.*, 
+    users.fullname, 
+    users.email,
+    order_details.quantity AS item_quantity,
+    order_details.price AS item_price,
+    products.name AS product_name,
+    products.image AS product_image
+    FROM orders
+    JOIN users 
+        ON orders.user_id = users.id
+    JOIN order_details 
+        ON orders.id = order_details.order_id
+    JOIN products 
+        ON order_details.product_id = products.id
+    ORDER BY orders.order_date DESC;
     ";
 
     $result = mysqli_query($conn, $sql);

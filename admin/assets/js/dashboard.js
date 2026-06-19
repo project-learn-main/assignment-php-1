@@ -181,23 +181,45 @@ function showToast(message, type = "success") {
 
 // Functions to handle update and delete modals
 function viewDetailOrder(orderId) {
+  // Tìm dòng tr tương ứng trên Table
   const row = document.querySelector(`tr[data-order-id="${orderId}"]`);
   if (!row) return;
 
   const cells = row.querySelectorAll("td");
 
+  // Đọc dữ liệu văn bản từ cột
   const orderIdText = cells[0].textContent.trim();
-  const customerName = cells[1].textContent.trim();
+  const orderName = cells[1].textContent.trim();
   const total = cells[2].textContent.trim();
   const date = cells[3].textContent.trim();
-  const status = cells[4].querySelector("select").value;
+  const selectEl = cells[4].querySelector("select");
+  const status = selectEl
+    ? selectEl.options[selectEl.selectedIndex].text
+    : "Pending";
 
-  // document.getElementById("viewOrderId").textContent = orderId;
-  document.getElementById("viewOrderCustomer").textContent = customerName;
-  document.getElementById("viewOrderTotal").textContent = total;
-  document.getElementById("viewOrderDate").textContent = date;
-  document.getElementById("viewOrderStatus").textContent = status;
+  // Điền dữ liệu cơ bản vào Modal
+  if (document.getElementById("viewOrderId"))
+    document.getElementById("viewOrderId").textContent = orderIdText;
+  if (document.getElementById("viewOrderCustomer"))
+    document.getElementById("viewOrderCustomer").textContent = orderName;
+  if (document.getElementById("viewOrderTotal"))
+    document.getElementById("viewOrderTotal").textContent = total;
+  if (document.getElementById("viewOrderDate"))
+    document.getElementById("viewOrderDate").textContent = date;
+  if (document.getElementById("viewOrderStatus"))
+    document.getElementById("viewOrderStatus").textContent = status;
 
+  // XỬ LÝ LỌC SẢN PHẨM: Trùng khớp id thì hiện, không trùng thì ẩn
+  const allItems = document.querySelectorAll(".order-item-block");
+  allItems.forEach((item) => {
+    if (item.getAttribute("data-belongs-to-order") == orderId) {
+      item.style.setProperty("display", "flex", "important"); // Hiện sản phẩm của đơn hàng này
+    } else {
+      item.style.setProperty("display", "none", "important"); // Ẩn sản phẩm đơn hàng khác
+    }
+  });
+
+  // Mở modal
   openModal("viewOrderDetailsModal");
 }
 
