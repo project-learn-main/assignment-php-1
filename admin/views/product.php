@@ -92,12 +92,12 @@
                         <?php if ($i == $currentPage): ?>
                             <span class="px-3 py-1.5 bg-blue-600 text-white text-sm font-semibold rounded shadow-md"><?= $i ?></span>
                         <?php else: ?>
-                            <a href="?tab=products&page=<?= $i ?>" class="px-3 py-1.5 bg-gray-700 text-white text-sm rounded hover:bg-gray-600 transition-colors"><?= $i ?></a>
+                            <a href="?tab=product&page=<?= $i ?>" class="px-3 py-1.5 bg-gray-700 text-white text-sm rounded hover:bg-gray-600 transition-colors"><?= $i ?></a>
                         <?php endif; ?>
                     <?php endfor; ?>
 
                     <?php if ($currentPage < $totalPages): ?>
-                        <a href="?tab=products&page=<?= $currentPage + 1 ?>" class="px-3 py-1.5 bg-gray-700 text-white text-sm rounded hover:bg-gray-600 transition-colors">Sau</a>
+                        <a href="?tab=product&page=<?= $currentPage + 1 ?>" class="px-3 py-1.5 bg-gray-700 text-white text-sm rounded hover:bg-gray-600 transition-colors">Sau</a>
                     <?php else: ?>
                         <span class="px-3 py-1.5 bg-gray-700 text-white text-sm rounded opacity-40 cursor-not-allowed">Sau</span>
                     <?php endif; ?>
