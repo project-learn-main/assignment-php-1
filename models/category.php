@@ -10,6 +10,31 @@ function getAllCategory()
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
+function getTotalCategoryCount()
+{
+    global $db;
+    $conn = $db->getConnection();
+    
+    $result = mysqli_query($conn, "SELECT COUNT(*) as total FROM categories");
+    $row = mysqli_fetch_assoc($result);
+    
+    return $row['total'] ?? 0;
+}
+
+function getCategoriesPagination($limit, $offset)
+{
+    global $db;
+    $conn = $db->getConnection();
+
+    $limit = (int)$limit;
+    $offset = (int)$offset;
+
+    $sql = "SELECT * FROM categories ORDER BY created_at DESC LIMIT $limit OFFSET $offset";
+    $result = mysqli_query($conn, $sql);
+
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
 function createCategory($name, $description, $createdBy)
 {
     global $db;

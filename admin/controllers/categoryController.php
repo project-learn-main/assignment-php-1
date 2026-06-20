@@ -4,7 +4,26 @@ class CategoryController
 {
     public function Render()
     {
-        $data = getAllCategory();
+      // 1. Số lượng danh mục hiển thị trên mỗi trang
+        $limit = 5;
+
+        // 2. Lấy số trang hiện tại từ URL (Ví dụ: ?tab=category&page=2), mặc định là trang 1
+        $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        if ($currentPage < 1) {
+            $currentPage = 1;
+        }
+
+        // 3. Tính toán vị trí bắt đầu bốc dữ liệu (Offset)
+        $offset = ($currentPage - 1) * $limit;
+
+        // 4. Lấy tổng số lượng danh mục và tính tổng số trang cần có
+        $totalCategories = getTotalCategoryCount();
+        $totalPages = ceil($totalCategories / $limit);
+
+        // 5. Lấy dữ liệu phân trang thay vì lấy hết như trước
+        $data = getCategoriesPagination($limit, $offset);
+
+        // 6. Nhúng file giao diện hiển thị (View sẽ nhận được các biến $data, $currentPage, $totalPages)
         include 'views/category.php';
     }
 
