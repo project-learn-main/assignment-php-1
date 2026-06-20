@@ -21,6 +21,37 @@ function getAllProduct()
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
+function getTotalProductCount()
+{
+    global $db;
+    $conn = $db->getConnection();
+    $result = mysqli_query($conn, "SELECT COUNT(*) as total FROM products");
+    $row = mysqli_fetch_assoc($result);
+    return $row['total'] ?? 0;
+}
+
+function getProductsPagination($limit, $offset)
+{
+    global $db;
+    $conn = $db->getConnection();
+
+    $limit = (int)$limit;
+    $offset = (int)$offset;
+
+    $query = "SELECT
+            products.*,
+            categories.name AS category_name,
+            users.fullname 
+        FROM products
+        INNER JOIN categories ON products.category_id = categories.id
+        LEFT JOIN users ON products.created_by = users.id
+        ORDER BY products.created_at DESC
+        LIMIT $limit OFFSET $offset";
+
+    $result = mysqli_query($conn, $query);
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
 function createProduct($name, $price, $stock, $image, $categoryId, $description, $created_by)
 {
     var_dump("🚀 ~ createProduct ~ $categoryId:", $categoryId);

@@ -6,8 +6,18 @@ class ProductController
 {
     public function Render()
     {
-        $data = getAllProduct();
-        $categories = getAllCategory();
+        $limit = 5; // Số sản phẩm trên mỗi trang
+        $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        if ($currentPage < 1) $currentPage = 1;
+        
+        $offset = ($currentPage - 1) * $limit;
+        $totalProducts = getTotalProductCount();
+        $totalPages = ceil($totalProducts / $limit);
+
+        // Bốc đúng tập dữ liệu phân trang
+        $data = getProductsPagination($limit, $offset);
+        $categories = getAllCategory(); // Dùng cho modal select nếu cần
+
         include('views/product.php');
     }
     
