@@ -76,12 +76,20 @@
                         Tạo Tài Khoản
                     </button>
                 </form>
+                <div>
 
-                <!-- Login Link -->
-                <p class="text-center text-sm text-gray-600">
-                    Đã có tài khoản? 
-                    <a href="?page=login" class="no-underline" style="color: var(--accent);">Đăng nhập ngay</a>
-                </p>
+                    <!-- Login Link -->
+                    <p class="text-center text-sm text-gray-600">
+                        Đã có tài khoản? 
+                        <a href="?page=login" class="no-underline" style="color: var(--accent);">Đăng nhập ngay</a>
+                    </p>
+
+                    <!-- forgot password Link -->
+                    <p class="text-center text-sm text-gray-600">
+                        Quên mật khẩu? 
+                        <a href="?page=forgotpassword" class="no-underline" style="color: var(--accent);">Khôi phục ngay</a>
+                    </p>
+                </div>
             </div>
         </div>
     </section>

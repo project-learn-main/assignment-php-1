@@ -48,6 +48,13 @@
   </script>
 <?php endif; ?>
 
+<?php if (isset($_COOKIE['register_error'])): ?>
+  <script>
+    showToast('<?php echo $_COOKIE['register_error']; ?>', 'error');
+    document.cookie = 'register_error=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  </script>
+<?php endif; ?>
+
 <?php if (isset($_COOKIE['login_success'])): ?>
   <script>
     showToast('Đăng nhập thành công!', 'success');
