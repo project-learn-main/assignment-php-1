@@ -1,6 +1,6 @@
 <?php
+// var_dump($data);
 // Get statistics from session data
-$ordersCount = count($_SESSION['orders'] ?? []);
 $customersCount = count($_SESSION['customers'] ?? []);
 $studentsCount = count($_SESSION['students'] ?? []);
 
@@ -74,8 +74,8 @@ $genderLabels = [
         <div class="bg-secondary rounded-lg p-6 border border-slate-700">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-gray-400 text-sm">Tông sô luong don hàng</p>
-                    <p class="text-3xl font-bold text-white mt-2"><?php echo $ordersCount; ?></p>
+                    <p class="text-gray-400 text-sm">Đơn hàng chưa xử lý</p>
+                    <p class="text-3xl font-bold text-white mt-2"><?php echo $countPendingOrders; ?></p>
                 </div>
                 <div class="bg-blue-500 bg-opacity-20 rounded-lg p-3">
                     <svg class="w-8 h-8 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
@@ -89,8 +89,8 @@ $genderLabels = [
         <div class="bg-secondary rounded-lg p-6 border border-slate-700">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-gray-400 text-sm">Tông sô luong khách hàng</p>
-                    <p class="text-3xl font-bold text-white mt-2"><?php echo $customersCount; ?></p>
+                    <p class="text-gray-400 text-sm">Đơn hàng đã hoàn thành</p>
+                    <p class="text-3xl font-bold text-white mt-2"><?php echo $countCompleteOrders; ?></p>
                 </div>
                 <div class="bg-green-500 bg-opacity-20 rounded-lg p-3">
                     <svg class="w-8 h-8 text-green-500" fill="currentColor" viewBox="0 0 20 20">
@@ -104,8 +104,8 @@ $genderLabels = [
         <div class="bg-secondary rounded-lg p-6 border border-slate-700">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-gray-400 text-sm">Tông sô luong sinh viên</p>
-                    <p class="text-3xl font-bold text-white mt-2"><?php echo $studentsCount; ?></p>
+                    <p class="text-gray-400 text-sm">Tổng số lượng Admin</p>
+                    <p class="text-3xl font-bold text-white mt-2"><?php echo $countAdmin; ?></p>
                 </div>
                 <div class="bg-purple-500 bg-opacity-20 rounded-lg p-3">
                     <svg class="w-8 h-8 text-purple-500" fill="currentColor" viewBox="0 0 20 20">

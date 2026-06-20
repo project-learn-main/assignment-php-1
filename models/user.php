@@ -14,6 +14,16 @@ function getAllUser()
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
+function getAllAdmins()
+{
+    global $db;
+    $conn = $db->getConnection();
+
+    $result = mysqli_query($conn, "SELECT * FROM users WHERE role = 'admin'");
+
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
 function login($email, $password)
 {
     global $db;

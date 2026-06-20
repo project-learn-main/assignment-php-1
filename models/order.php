@@ -65,3 +65,47 @@ function updateOrderStatus($orderId, $status)
 
     return mysqli_query($conn, $sql);
 }
+
+function getPendingOrders()
+{
+    global $db;
+    $conn = $db->getConnection();
+
+    $sql = "
+        SELECT 
+            orders.*, 
+            users.fullname, 
+            users.email,
+            order_details.quantity AS item_quantity,
+            order_details.price AS item_price,
+            products.name AS product_name,
+            products.image AS product_image
+        FROM orders
+        JOIN users 
+            ON orders.user_id = users.id
+        JOIN order_details 
+            ON orders.id = order_details.order_id
+        JOIN products 
+            ON order_details.product_id = products.id
+        WHERE orders.status = 'pending'
+        ORDER BY orders.order_date DESC;
+    ";
+
+    $result = mysqli_query($conn, $sql);
+
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
+function getCompleteOrders()
+{
+    global $db;
+    $conn = $db->getConnection();
+
+    $sql = "
+        SELECT COUNT(*) as total FROM orders WHERE status = 'completed';
+    ";
+
+    $result = mysqli_query($conn, $sql);
+
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
