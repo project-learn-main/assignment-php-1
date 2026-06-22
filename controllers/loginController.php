@@ -18,6 +18,7 @@ class LoginController
 
             if ($user) {
                 $_SESSION['fullname'] = $user['fullname'];
+                $_SESSION['userId'] = $user['id'];
                 $_SESSION['role'] = $user['role'];
 
                 setcookie('login_success', 'true', time() + 10, "/");

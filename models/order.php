@@ -109,3 +109,33 @@ function getCompleteOrders()
 
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
+
+function getOrderById($order_id) {
+    global $db;
+    $conn = $db->getConnection();
+    $order_id = intval($order_id);
+    
+    $query = "SELECT * FROM orders WHERE id = $order_id";
+    $result = mysqli_query($conn, $query);
+    return mysqli_fetch_assoc($result);
+}
+
+// Lấy danh sách sản phẩm thuộc đơn hàng đó (kèm theo tên sản phẩm từ bảng products)
+function getOrderDetails($order_id) {
+    global $db;
+    $conn = $db->getConnection();
+    $order_id = intval($order_id);
+    
+    // Câu lệnh JOIN liên kết bảng order_details và bảng products
+    $query = "SELECT od.*, p.name AS product_name 
+              FROM order_details od 
+              JOIN products p ON od.product_id = p.id 
+              WHERE od.order_id = $order_id";
+              
+    $result = mysqli_query($conn, $query);
+    $details = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $details[] = $row;
+    }
+    return $details;
+}

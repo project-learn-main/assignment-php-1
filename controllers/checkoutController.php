@@ -1,62 +1,53 @@
 <?php
-include_once "models/checkout.php";
+include_once __DIR__ . '/../models/database.php';
+include_once __DIR__ . '/../models/checkout.php'; 
+include_once __DIR__ . '/../models/cart.php'; 
 
 class CheckoutController
 {
     public function Render()
     {
-        if (!isset($_SESSION['userId'])) {
-            header("Location: ?page=login");
-            exit();
-        }
-
-        $userId = $_SESSION['userId'];
-        $items = getCartItems($userId);
-
-        include "views/checkout.php";
+        // Đồng bộ userId viết thường/viết hoa từ Login Session của bạn
+        $userId = isset($_SESSION['userId']) ? $_SESSION['userId'] : 1; 
+        
+        // GỌI CHÍNH XÁC HÀM TRONG FILE CART MODEL CỦA BẠN
+        $items = getCartItems($userId); 
+        
+        include('views/checkout.php');
     }
 
     public function PlaceOrder()
     {
-        if (!isset($_SESSION['userId'])) {
-            header("Location: ?page=login");
-            exit();
-        }
+        $userId = isset($_SESSION['userId']) ? $_SESSION['userId'] : 1;
 
-        $userId = $_SESSION['userId'];
-
-        // Lấy sản phẩm trong giỏ
+        // GỌI CHÍNH XÁC HÀM TRONG FILE CART MODEL CỦA BẠN
         $items = getCartItems($userId);
 
         if (empty($items)) {
-            header("Location: ?page=cart");
+            header('location: index.php?page=cart');
             exit();
         }
 
-        // Tính tổng tiền
         $total = 0;
         foreach ($items as $item) {
             $total += $item['price'] * $item['quantity'];
         }
 
-        // Tạo đơn hàng
         $orderId = createOrder($userId, $total);
 
-        // Lưu chi tiết đơn hàng
-        foreach ($items as $item) {
-            createOrderDetail(
-                $orderId,
-                $item['product_id'],
-                $item['quantity'],
-                $item['price']
-            );
+        if ($orderId) {
+            foreach ($items as $item) {
+                createOrderDetail($orderId, $item['product_id'], $item['quantity'], $item['price']);
+            }
+
+            clearCart($userId);
+
+            $_SESSION['last_order_id'] = $orderId;
+
+            header('location: index.php?page=success');
+            exit();
+        } else {
+            echo "Thanh toán thất bại.";
         }
-
-        // Xóa giỏ hàng
-        clearCart($userId);
-
-        header("Location: ?page=success");
-        exit();
     }
 }
-?>

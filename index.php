@@ -1,4 +1,5 @@
 <?php
+
 include('views/header.php');
 if (isset($_GET['page'])) {
     // include 'views/' . $_GET['page'] . '.php';
