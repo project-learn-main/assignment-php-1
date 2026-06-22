@@ -1,10 +1,8 @@
 <?php
-session_start();
-
 include_once __DIR__ . '/../models/database.php';
 include_once __DIR__ . '/../models/user.php';
 
-class AuthController
+class LoginController
 {
     public function Render()
     {
@@ -13,7 +11,6 @@ class AuthController
 
     public function login()
     {
-
         if (isset($_POST['email']) && isset($_POST['password'])) {
             $email = $_POST['email'];
             $password = $_POST['password'];

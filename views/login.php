@@ -4,7 +4,7 @@
                 <h1 class="text-3xl font-bold mb-2" style="color: var(--primary);">Đăng Nhập</h1>
                 <p class="text-sm mb-8 text-gray-600">Đăng nhập vào tài khoản của bạn</p>
 
-                <form id="loginForm" action="actions/login.php" method="POST">
+                <form id="loginForm" action="index.php?page=login&action=submit" method="POST">
                     <!-- Email -->
                     <div class="mb-6">
                         <label for="email" class="block text-sm font-bold mb-2" style="color: var(--primary);">

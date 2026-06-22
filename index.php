@@ -9,7 +9,13 @@ if (isset($_GET['page'])) {
             $controller->Render();
             break;
         case 'login':
-            include('views/login.php');
+            include('controllers/loginController.php');
+            $controller = new LoginController();
+            if (isset($_GET['action']) && $_GET['action'] == 'submit') {
+                $controller->login();
+            } else {
+                $controller->Render();
+            }
             break;
         case 'register':
             include('controllers/registerController.php');

@@ -62,6 +62,15 @@ function login($email, $password)
     return mysqli_fetch_assoc($result);
 }
 
+function register($fullname, $email, $password)
+{
+    global $db;
+    $conn = $db->getConnection();
+
+    $query = "INSERT INTO users (fullname, email, password) VALUES ('$fullname', '$email', '$password')";
+    return mysqli_query($conn, $query);
+}
+
 function getUserByEmail($email)
 {
     var_dump("🚀 ~ getUserByEmail ~ $email:", $email);
