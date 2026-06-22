@@ -30,7 +30,7 @@ if (isset($_GET['page'])) {
         case 'logout':
             include('controllers/logoutController.php');
             $controller = new LogoutController();
-            $controller->Render();
+            $controller->logout();
             break;
             
         case 'forgotpassword':

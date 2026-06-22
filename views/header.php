@@ -42,7 +42,7 @@ session_start();
                         <span class="text-sm">
                             Xin chào, <?= $_SESSION['fullname']; ?>
                         </span>
-                        <a href="actions/logout.php" class="btn-secondary">
+                        <a href="?page=logout" class="btn-secondary">
                             Đăng xuất
                         </a>
                     </div>

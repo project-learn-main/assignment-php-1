@@ -1,11 +1,6 @@
 <?php
 class LogoutController
 {
-    public function Render()
-    {
-        // Vì đăng xuất là hành động xử lý luôn, ta gọi luôn hàm logout ở đây
-        $this->logout();
-    }
 
     public function logout()
     {
