@@ -20,8 +20,19 @@ if (isset($_GET['page'])) {
         case 'register':
             include('controllers/registerController.php');
             $controller = new RegisterController();
+            if (isset($_GET['action']) && $_GET['action'] == 'submit') {
+                $controller->submitRegister();
+            } else {
+                $controller->Render();
+            }
+            break;
+
+        case 'logout':
+            include('controllers/logoutController.php');
+            $controller = new LogoutController();
             $controller->Render();
             break;
+            
         case 'forgotpassword':
             include('controllers/forgotpasswordController.php');
             $controller = new ForgotpasswordController();

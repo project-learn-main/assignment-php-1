@@ -4,7 +4,7 @@
                 <h1 class="text-3xl font-bold mb-2" style="color: var(--primary);">Đăng Ký</h1>
                 <p class="text-sm mb-8 text-gray-600">Tạo tài khoản ShopHub mới của bạn</p>
 
-                <form id="registerForm" action="actions/register.php" method="POST">
+                <form id="registerForm" action="index.php?page=register&action=submit" method="POST">
                     <!-- Name -->
                     <div class="mb-6">
                         <label for="name" class="block text-sm font-bold mb-2" style="color: var(--primary);">

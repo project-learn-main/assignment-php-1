@@ -62,10 +62,30 @@ function login($email, $password)
     return mysqli_fetch_assoc($result);
 }
 
-function register($fullname, $email, $password)
-{
+function checkEmailExists($email) {
     global $db;
     $conn = $db->getConnection();
+    
+    // Tốt nhất nên dùng Escape string để tránh lỗi SQL Injection cơ bản
+    $email = mysqli_real_escape_string($conn, $email);
+    
+    $query = "SELECT * FROM users WHERE email = '$email'";
+    $result = mysqli_query($conn, $query);
+    
+    if (mysqli_num_rows($result) > 0) {
+        return true; // Email đã tồn tại
+    }
+    return false; // Email chưa tồn tại
+}
+
+// Cập nhật lại hàm register cũ của bạn một chút cho an toàn hơn
+function register($fullname, $email, $password) {
+    global $db;
+    $conn = $db->getConnection();
+    
+    $fullname = mysqli_real_escape_string($conn, $fullname);
+    $email = mysqli_real_escape_string($conn, $email);
+    // Khuyên dùng: $password = password_hash($password, PASSWORD_DEFAULT); nếu muốn bảo mật mã hóa
 
     $query = "INSERT INTO users (fullname, email, password) VALUES ('$fullname', '$email', '$password')";
     return mysqli_query($conn, $query);

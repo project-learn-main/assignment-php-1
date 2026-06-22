@@ -1,5 +1,4 @@
 <?php
-include_once __DIR__ . '/../models/database.php';
 include_once __DIR__ . '/../models/user.php';
 
 class LoginController
