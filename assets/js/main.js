@@ -1,56 +1,48 @@
-function showToast(message, type = "success") {
-  let toastContainer = document.getElementById("toastContainer");
-  if (!toastContainer) {
-    toastContainer = document.createElement("div");
-    toastContainer.id = "toastContainer";
-    toastContainer.className = "fixed top-4 right-4 z-50 space-y-2";
-    document.body.appendChild(toastContainer);
-  }
+const toast = document.querySelector('.toast');
+let cartCount = 0;
 
-  const toast = document.createElement("div");
-
-  const typeClasses = {
-    success: "bg-green-500 text-white",
-    error: "bg-red-500 text-white",
-    info: "bg-blue-500 text-white",
-  };
-
-  toast.className = `${typeClasses[type]} px-4 py-3 rounded-lg shadow-lg flex items-center justify-between min-w-[250px] max-w-[350px] transform translate-x-full transition-all duration-300 ease-out`;
-
-  toast.innerHTML = `
-                        <span class="flex-1">${message}</span>
-                        <button type="button" class="ml-4 text-white hover:text-gray-200" onclick="this.parentElement.remove()">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                        </button>
-                    `;
-
-  toastContainer.appendChild(toast);
-
-  setTimeout(() => {
-    toast.classList.remove("translate-x-full");
-    toast.classList.add("translate-x-0");
-  }, 10);
-
-  setTimeout(() => {
-    toast.classList.remove("translate-x-0");
-    toast.classList.add("translate-x-full");
-    setTimeout(() => toast.remove(), 300);
-  }, 3000);
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add('show');
+  window.clearTimeout(showToast.timer);
+  showToast.timer = window.setTimeout(() => toast.classList.remove('show'), 2600);
 }
-function filterCategory(category) {
-  const products = document.querySelectorAll(".product-card");
 
-  products.forEach((product) => {
-    const productCategory = product.dataset.category;
-
-    console.log(category, productCategory);
-
-    if (category === "all" || category === productCategory) {
-      product.style.display = "";
-    } else {
-      product.style.display = "none";
-    }
+document.querySelectorAll('[data-filter]').forEach((button) => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('[data-filter]').forEach((item) => item.classList.remove('active'));
+    button.classList.add('active');
+    const filter = button.dataset.filter;
+    document.querySelectorAll('.product-card').forEach((card) => {
+      card.hidden = filter !== 'all' && card.dataset.category !== filter;
+    });
   });
-}
+});
+
+document.querySelectorAll('.add-button').forEach((button) => {
+  button.addEventListener('click', () => {
+    cartCount += 1;
+    document.querySelector('[data-cart-count]').textContent = cartCount;
+    showToast(`${button.dataset.product} đã được thêm vào giỏ hàng.`);
+  });
+});
+
+document.querySelector('.menu-toggle').addEventListener('click', (event) => {
+  const links = document.querySelector('.nav-links');
+  const open = links.classList.toggle('open');
+  event.currentTarget.setAttribute('aria-expanded', String(open));
+});
+
+document.querySelector('#newsletter-form').addEventListener('submit', (event) => {
+  event.preventDefault();
+  event.currentTarget.reset();
+  showToast('Đăng ký nhận ưu đãi thành công.');
+});
+
+document.querySelector('[data-open-login]').addEventListener('click', () => {
+  showToast('Tính năng đăng nhập đang được phát triển.');
+});
+
+document.querySelector('.cart-button').addEventListener('click', () => {
+  showToast(cartCount ? `Bạn có ${cartCount} sản phẩm trong giỏ.` : 'Giỏ hàng đang trống.');
+});

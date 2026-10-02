@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ShopHub - Mua sắm trực tuyến dễ dàng, an toàn và tiết kiệm.">
+  <title>ShopHub — Mua sắm thông minh</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Điều hướng chính">
+      <a class="brand" href="#home">Shop<span>Hub</span></a>
+      <button class="menu-toggle" aria-label="Mở menu" aria-expanded="false">☰</button>
+      <div class="nav-links">
+        <a href="#home">Trang chủ</a>
+        <a href="#products">Sản phẩm</a>
+        <a href="#about">Về chúng tôi</a>
+      </div>
+      <div class="nav-actions">
+        <button class="cart-button" type="button" aria-label="Mở giỏ hàng">Giỏ hàng <b data-cart-count>0</b></button>
+        <button class="button button-outline" type="button" data-open-login>Đăng nhập</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Bộ sưu tập mới 2024</p>
+          <h1>Mua sắm thông minh, <em>giá tốt nhất.</em></h1>
+          <p class="hero-text">Khám phá các sản phẩm chất lượng cao, được tuyển chọn kỹ lưỡng cho phong cách sống hiện đại.</p>
+          <a class="button button-primary" href="#products">Khám phá sản phẩm <span>→</span></a>
+          <div class="hero-meta"><span><strong>10k+</strong> khách hàng</span><span><strong>4.9/5</strong> đánh giá</span></div>
+        </div>
+        <div class="hero-art" aria-label="Sản phẩm nổi bật">
+          <div class="hero-circle"></div>
+          <img src="admin/images/1781574900_jec7wafe-1340-lenovo-ideapad-pro-5-16irh8-core-i5-13500h-ram-16gb-ssd-1tb-rtx-3050-6gb-16-wqxga-120hz-new.webp" alt="Laptop Lenovo nổi bật">
+          <div class="floating-card"><span class="check">✓</span><span><b>Chất lượng đảm bảo</b><small>Kiểm tra trước khi giao</small></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="benefits container" aria-label="Lợi ích mua sắm">
+      <article><span class="benefit-icon">↗</span><div><h3>Giao hàng nhanh</h3><p>Miễn phí đơn từ 200.000đ</p></div></article>
+      <article><span class="benefit-icon">◇</span><div><h3>Chất lượng cao</h3><p>Sản phẩm được kiểm định</p></div></article>
+      <article><span class="benefit-icon">⌑</span><div><h3>Thanh toán an toàn</h3><p>Bảo mật thông tin 100%</p></div></article>
+    </section>
+
+    <section class="products-section container" id="products">
+      <div class="section-heading"><div><p class="eyebrow">Tuyển chọn cho bạn</p><h2>Sản phẩm nổi bật</h2></div><a href="#products" class="text-link">Xem tất cả <span>→</span></a></div>
+      <div class="category-tabs" role="tablist"><button class="active" data-filter="all">Tất cả</button><button data-filter="Công nghệ">Công nghệ</button><button data-filter="Thời trang">Thời trang</button><button data-filter="Gia dụng">Gia dụng</button></div>
+      <div class="product-grid">
+        <article class="product-card" data-category="Công nghệ"><div class="product-image"><span class="tag">Bán chạy</span><img src="admin/images/1781574900_jec7wafe-1340-lenovo-ideapad-pro-5-16irh8-core-i5-13500h-ram-16gb-ssd-1tb-rtx-3050-6gb-16-wqxga-120hz-new.webp" alt="Laptop Lenovo IdeaPad Pro"></div><div class="product-info"><p class="product-category">Công nghệ</p><h3>Lenovo IdeaPad Pro 5</h3><div class="product-bottom"><strong>24.990.000đ</strong><button class="add-button" data-product="Lenovo IdeaPad Pro 5">+</button></div></div></article>
+        <article class="product-card" data-category="Công nghệ"><div class="product-image"><img src="admin/images/1781574920_images.jfif" alt="Sản phẩm công nghệ"></div><div class="product-info"><p class="product-category">Công nghệ</p><h3>Thiết bị công nghệ hiện đại</h3><div class="product-bottom"><strong>8.490.000đ</strong><button class="add-button" data-product="Thiết bị công nghệ hiện đại">+</button></div></div></article>
+        <article class="product-card" data-category="Thời trang"><div class="product-image"><span class="tag new">Mới</span><img src="admin/images/1781840837_MV5BNzg1MTUyNDYxOF5BMl5BanBnXkFtZTgwNTQ4MTE2MjE@._V1_.jpg" alt="Sản phẩm thời trang"></div><div class="product-info"><p class="product-category">Thời trang</p><h3>Phong cách tối giản</h3><div class="product-bottom"><strong>599.000đ</strong><button class="add-button" data-product="Phong cách tối giản">+</button></div></div></article>
+        <article class="product-card" data-category="Gia dụng"><div class="product-image"><img src="admin/images/1781575202_tai_xuong__23__62283ea01a3e406382b56799ca00681b_master.png" alt="Sản phẩm gia dụng"></div><div class="product-info"><p class="product-category">Gia dụng</p><h3>Đồ dùng tiện ích cho nhà</h3><div class="product-bottom"><strong>349.000đ</strong><button class="add-button" data-product="Đồ dùng tiện ích cho nhà">+</button></div></div></article>
+      </div>
+    </section>
+
+    <section class="newsletter" id="about"><div class="container newsletter-inner"><div><p class="eyebrow">Luôn cập nhật</p><h2>Nhận ưu đãi mới nhất</h2><p>Đăng ký để không bỏ lỡ sản phẩm mới và khuyến mãi đặc biệt.</p></div><form id="newsletter-form"><label class="sr-only" for="email">Email của bạn</label><input id="email" type="email" placeholder="Email của bạn" required><button class="button button-primary" type="submit">Đăng ký</button></form></div></section>
+  </main>
+
+  <footer class="footer"><div class="container footer-grid"><div><a class="brand brand-light" href="#home">Shop<span>Hub</span></a><p>Mua sắm trực tuyến dễ dàng, an toàn và tiết kiệm.</p></div><div><h3>Khám phá</h3><a href="#products">Sản phẩm</a><a href="#about">Về chúng tôi</a></div><div><h3>Hỗ trợ</h3><a href="#">Chính sách đổi trả</a><a href="#">Câu hỏi thường gặp</a></div><div><h3>Kết nối</h3><a href="#">Facebook</a><a href="#">Instagram</a></div></div><div class="container footer-bottom">© 2024 ShopHub. All rights reserved.</div></footer>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
